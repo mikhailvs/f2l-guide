@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F2L Guide — Learn First Two Layers</title>
+  <meta name="description" content="A comprehensive guide to all 41 F2L cases for the CFOP Rubik's cube method. Animated 3D diagrams, algorithms, and progress tracking.">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟨</text></svg>">
+</head>
+<body>
+
+<header class="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo">F2L<span>Guide</span></a>
+    <div class="nav-links" role="list">
+      <a href="index.html" role="listitem">Home</a>
+      <a href="cases.html" role="listitem">All Cases</a>
+      <a href="about.html" role="listitem">About F2L</a>
+    </div>
+    <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <rect y="3" width="20" height="2" rx="1"/>
+        <rect y="9" width="20" height="2" rx="1"/>
+        <rect y="15" width="20" height="2" rx="1"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <div class="page">
+
+    <section class="hero">
+      <p class="hero-eyebrow">CFOP Method</p>
+      <h1 class="hero-title">Master <span>F2L</span><br>First Two Layers</h1>
+      <p class="hero-sub">
+        All 41 cases, animated and organized. Learn to pair and insert corner-edge
+        pairs efficiently — the core skill of speedcubing.
+      </p>
+      <div class="hero-actions">
+        <a href="cases.html#easy" class="btn btn-primary">Start with Easy Cases</a>
+        <a href="cases.html" class="btn btn-ghost">Browse All 41 Cases</a>
+      </div>
+    </section>
+
+    <div class="stats-strip" aria-label="Site statistics">
+      <div class="stat">
+        <div class="stat-value">41</div>
+        <div class="stat-label">F2L Cases</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">5</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">3D</div>
+        <div class="stat-label">Animated Diagrams</div>
+      </div>
+    </div>
+
+    <section aria-labelledby="start-heading">
+      <p class="section-label">Where to begin</p>
+      <h2 id="start-heading" style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Pick your starting point</h2>
+      <p style="color: var(--text-muted); margin-bottom: 0; max-width: 540px;">
+        New to F2L? Start with easy cases. Already know the basics? Jump straight to the full list.
+      </p>
+
+      <div class="start-grid">
+        <a href="cases.html#easy" class="start-card">
+          <div class="start-card-icon">✅</div>
+          <h3>Easy Cases</h3>
+          <p>Corner and edge already paired. Just insert them into the slot. 4 cases total — start here.</p>
+        </a>
+        <a href="cases.html#both-in-top" class="start-card">
+          <div class="start-card-icon">⬆️</div>
+          <h3>Both in Top Layer</h3>
+          <p>Both pieces are free in the U layer. The most common scenario — 17 cases covering all orientations.</p>
+        </a>
+        <a href="cases.html#corner-in-slot" class="start-card">
+          <div class="start-card-icon">📐</div>
+          <h3>Corner in Slot</h3>
+          <p>Corner is trapped in the right slot but the edge isn't placed yet. Learn to extract and repair.</p>
+        </a>
+        <a href="cases.html#edge-in-top" class="start-card">
+          <div class="start-card-icon">🔄</div>
+          <h3>Edge in Top</h3>
+          <p>Edge is in the top layer but misoriented or paired incorrectly with the corner.</p>
+        </a>
+        <a href="cases.html#advanced" class="start-card">
+          <div class="start-card-icon">⚡</div>
+          <h3>Advanced Cases</h3>
+          <p>Edge or corner in the wrong slot. Requires extraction before insertion.</p>
+        </a>
+        <a href="about.html" class="start-card">
+          <div class="start-card-icon">📖</div>
+          <h3>Learn the Notation</h3>
+          <p>New to WCA move notation? Read the notation guide before diving into algorithms.</p>
+        </a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>F2L Guide — CFOP Reference</span>
+    <span>Algorithms sourced from the SpeedSolving wiki</span>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

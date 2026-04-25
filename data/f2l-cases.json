@@ -1,0 +1,461 @@
+{
+  "cases": [
+    {
+      "id": "f2l-01",
+      "name": "Pair formed, insert right",
+      "category": "easy",
+      "slot": "FR",
+      "scramble": "U R U' R'",
+      "recognition": "Corner and edge are already paired together in the top layer. The pair is above the correct slot, oriented to go straight in with a simple trigger.",
+      "algorithms": [
+        { "label": "Main", "moves": "U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-02",
+      "name": "Pair formed, insert left",
+      "category": "easy",
+      "slot": "FR",
+      "scramble": "U' F' U F",
+      "recognition": "Corner and edge are paired in the top layer, but the pair must be brought to the left side before inserting.",
+      "algorithms": [
+        { "label": "Main", "moves": "U' F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-03",
+      "name": "Pair formed, U2 then insert right",
+      "category": "easy",
+      "slot": "FR",
+      "scramble": "U2 R U' R'",
+      "recognition": "Pair is formed but sitting at the back. Two U moves bring it to the insertion position.",
+      "algorithms": [
+        { "label": "Main", "moves": "U2 R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-04",
+      "name": "Pair formed, U2 then insert left",
+      "category": "easy",
+      "slot": "FR",
+      "scramble": "U2 F' U F",
+      "recognition": "Pair is formed but needs to be AUF'd twice to align for the left-side insertion.",
+      "algorithms": [
+        { "label": "Main", "moves": "U2 F' U F", "notes": "" }
+      ]
+    },
+
+    {
+      "id": "f2l-05",
+      "name": "Corner top white up, edge matched",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "R U2 R' U' R U R'",
+      "recognition": "Corner is in the top layer with the white sticker facing up. Edge is in the top layer with its stickers matching the two side colors. They are not paired.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U2 R' U' R U R'", "notes": "" },
+        { "label": "Alt",  "moves": "F' U2 F U F' U' F", "notes": "Mirror" }
+      ]
+    },
+    {
+      "id": "f2l-06",
+      "name": "Corner top white right, edge matched",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U R U' R'",
+      "recognition": "Corner is in the U layer with the white sticker facing the R face. Edge is directly above the slot, colors matching.",
+      "algorithms": [
+        { "label": "Main", "moves": "U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-07",
+      "name": "Corner top white front, edge matched",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U' F' U F",
+      "recognition": "Corner is in the U layer with the white sticker facing the F face. Edge is in the top, colors aligned.",
+      "algorithms": [
+        { "label": "Main", "moves": "U' F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-08",
+      "name": "Corner top white up, edge flipped",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "R U R' U2 R U' R'",
+      "recognition": "Corner in top layer, white facing up. Edge is in the top layer but flipped — colors are swapped relative to the faces.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U R' U2 R U' R'", "notes": "" },
+        { "label": "Alt",  "moves": "F' U' F U2 F' U F", "notes": "Mirror" }
+      ]
+    },
+    {
+      "id": "f2l-09",
+      "name": "Corner top white right, edge flipped",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U' R U2 R' U R U' R'",
+      "recognition": "Corner in U layer, white facing the R face. Edge is flipped. Pair must be formed before insertion.",
+      "algorithms": [
+        { "label": "Main", "moves": "U' R U2 R' U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-10",
+      "name": "Corner top white front, edge flipped",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U F' U2 F U' F' U F",
+      "recognition": "Corner in U layer, white facing the F face. Edge is flipped. Requires setup before pairing.",
+      "algorithms": [
+        { "label": "Main", "moves": "U F' U2 F U' F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-11",
+      "name": "Both in top, pair above wrong slot",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U R U2 R' U R U' R'",
+      "recognition": "Corner and edge are above a slot that isn't theirs. AUF brings them to the correct slot.",
+      "algorithms": [
+        { "label": "Main", "moves": "U R U2 R' U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-12",
+      "name": "Corner U, white right; edge between slots",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "R U' R' U R U' R'",
+      "recognition": "Corner in U layer, white facing right. Edge is between the correct and adjacent top-layer positions.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U' R' U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-13",
+      "name": "Corner U, white front; edge between slots",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "F' U F U' F' U F",
+      "recognition": "Corner in U layer, white facing front. Edge in top layer in adjacent position.",
+      "algorithms": [
+        { "label": "Main", "moves": "F' U F U' F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-14",
+      "name": "Corner U, white up; edge correct orientation, wrong AUF",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U' R U2 R' U2 R U' R'",
+      "recognition": "Corner white facing up. Edge correctly oriented but requires AUF twice. Classic 8-move case.",
+      "algorithms": [
+        { "label": "Main", "moves": "U' R U2 R' U2 R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-15",
+      "name": "Corner U, white up; edge flipped, wrong AUF",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U R U' R' U2 F' U F",
+      "recognition": "Corner white up, edge flipped. Both need AUF to align. Diagonal case.",
+      "algorithms": [
+        { "label": "Main", "moves": "U R U' R' U2 F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-16",
+      "name": "Both in top, awkward diagonal",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "R U2 R' U2 R U' R'",
+      "recognition": "Corner and edge are on opposite sides of the U layer. Requires setup moves to pair.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U2 R' U2 R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-17",
+      "name": "Both in top, corner front-right; edge left-front",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "F' U' F U' R U R'",
+      "recognition": "Corner above FR, edge above FL. Pairing requires a longer sequence.",
+      "algorithms": [
+        { "label": "Main", "moves": "F' U' F U' R U R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-18",
+      "name": "Both in top, right-back pair",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "R U' R' U' F' U F",
+      "recognition": "Corner above BR, edge above FR. The longer path to pair them.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U' R' U' F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-19",
+      "name": "Both in top, white up, edge left",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U F' U F U2 R U' R'",
+      "recognition": "Corner white up above FR, edge is to the left. Needs two setup moves.",
+      "algorithms": [
+        { "label": "Main", "moves": "U F' U F U2 R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-20",
+      "name": "Both in top, white right, edge back-right",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U' R U R' U2 F' U F",
+      "recognition": "Corner white facing right, edge at back-right position. Longest of the both-in-top group.",
+      "algorithms": [
+        { "label": "Main", "moves": "U' R U R' U2 F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-21",
+      "name": "Both in top, white front, edge back-left",
+      "category": "both-in-top",
+      "slot": "FR",
+      "scramble": "U2 R U' R' U F' U F",
+      "recognition": "Corner white facing front, edge at back-left. Diagonal setup then standard insertion.",
+      "algorithms": [
+        { "label": "Main", "moves": "U2 R U' R' U F' U F", "notes": "" }
+      ]
+    },
+
+    {
+      "id": "f2l-22",
+      "name": "Corner in slot correct, edge in top correct",
+      "category": "corner-in-slot",
+      "slot": "FR",
+      "scramble": "R U' R' U R U' R'",
+      "recognition": "Corner is already in the correct slot. Edge is in the top layer and correctly oriented. The corner needs to be extracted to pair.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U' R' U R U' R'", "notes": "Extract corner, pair, reinsert" }
+      ]
+    },
+    {
+      "id": "f2l-23",
+      "name": "Corner in slot correct, edge in top flipped",
+      "category": "corner-in-slot",
+      "slot": "FR",
+      "scramble": "R U R' U' R U R'",
+      "recognition": "Corner in correct slot, edge in top but flipped. Extract and fix edge orientation.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U R' U' R U R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-24",
+      "name": "Corner in slot wrong orientation, edge correct",
+      "category": "corner-in-slot",
+      "slot": "FR",
+      "scramble": "R U2 R' U R U' R'",
+      "recognition": "Corner is in the FR slot but oriented incorrectly (white not on bottom). Edge is in the top layer correctly oriented.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U2 R' U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-25",
+      "name": "Corner in slot wrong orientation, edge flipped",
+      "category": "corner-in-slot",
+      "slot": "FR",
+      "scramble": "R U2 R' U' R U R'",
+      "recognition": "Corner in slot, wrongly oriented. Edge in top, flipped. Both need correction.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U2 R' U' R U R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-26",
+      "name": "Corner in slot, edge at back-right",
+      "category": "corner-in-slot",
+      "slot": "FR",
+      "scramble": "U R U2 R' U R U' R'",
+      "recognition": "Corner is in the slot. Edge is in the top layer at the back-right position. Requires AUF before extracting.",
+      "algorithms": [
+        { "label": "Main", "moves": "U R U2 R' U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-27",
+      "name": "Corner in slot, edge at front-left",
+      "category": "corner-in-slot",
+      "slot": "FR",
+      "scramble": "U' F' U2 F U' F' U F",
+      "recognition": "Corner in slot. Edge is in the top layer at the front-left position.",
+      "algorithms": [
+        { "label": "Main", "moves": "U' F' U2 F U' F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-28",
+      "name": "Corner in slot, edge back-right flipped",
+      "category": "corner-in-slot",
+      "slot": "FR",
+      "scramble": "U R U2 R' U' R U R'",
+      "recognition": "Corner in slot. Edge at back-right but flipped orientation.",
+      "algorithms": [
+        { "label": "Main", "moves": "U R U2 R' U' R U R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-29",
+      "name": "Corner in slot, edge front-left flipped",
+      "category": "corner-in-slot",
+      "slot": "FR",
+      "scramble": "U' F' U2 F U F' U' F",
+      "recognition": "Corner in slot. Edge at front-left, flipped.",
+      "algorithms": [
+        { "label": "Main", "moves": "U' F' U2 F U F' U' F", "notes": "" }
+      ]
+    },
+
+    {
+      "id": "f2l-30",
+      "name": "Corner in top, edge in middle correct",
+      "category": "edge-in-top",
+      "slot": "FR",
+      "scramble": "R U' R'",
+      "recognition": "Corner is free in the top layer. Edge is already in the middle layer at the correct position, correctly oriented. Just insert the corner.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U' R'", "notes": "Only 3 moves" }
+      ]
+    },
+    {
+      "id": "f2l-31",
+      "name": "Corner in top, edge in middle flipped",
+      "category": "edge-in-top",
+      "slot": "FR",
+      "scramble": "F' U F",
+      "recognition": "Corner is free in the top layer. Edge is in the correct position but flipped. Use a short trigger to fix.",
+      "algorithms": [
+        { "label": "Main", "moves": "F' U F", "notes": "Only 3 moves" }
+      ]
+    },
+    {
+      "id": "f2l-32",
+      "name": "Corner in top white up, edge in wrong slot correct",
+      "category": "edge-in-top",
+      "slot": "FR",
+      "scramble": "U R U' R' U' F' U F",
+      "recognition": "Edge is in the middle layer but in the wrong slot, correctly oriented. Corner is in the top layer, white facing up.",
+      "algorithms": [
+        { "label": "Main", "moves": "U R U' R' U' F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-33",
+      "name": "Corner in top white right, edge in wrong slot",
+      "category": "edge-in-top",
+      "slot": "FR",
+      "scramble": "R U' R' U R U' R'",
+      "recognition": "Corner in top layer, white facing R. Edge in wrong slot.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U' R' U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-34",
+      "name": "Corner in top white front, edge in wrong slot",
+      "category": "edge-in-top",
+      "slot": "FR",
+      "scramble": "F' U F U' F' U F",
+      "recognition": "Corner in top layer, white facing F. Edge in wrong slot.",
+      "algorithms": [
+        { "label": "Main", "moves": "F' U F U' F' U F", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-35",
+      "name": "Corner in top, edge in wrong slot flipped",
+      "category": "edge-in-top",
+      "slot": "FR",
+      "scramble": "R U2 R' U' R U R' U' R U' R'",
+      "recognition": "Corner free in top layer. Edge in wrong slot and flipped. More complex extraction needed.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U2 R' U' R U R' U' R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-36",
+      "name": "Corner in top, edge in slot back-right",
+      "category": "edge-in-top",
+      "slot": "FR",
+      "scramble": "U' R U R' U R U' R'",
+      "recognition": "Corner in top layer. Edge is in the back-right middle slot.",
+      "algorithms": [
+        { "label": "Main", "moves": "U' R U R' U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-37",
+      "name": "Corner in top, edge in slot back-right flipped",
+      "category": "edge-in-top",
+      "slot": "FR",
+      "scramble": "R U' R' U2 R U' R'",
+      "recognition": "Corner in top. Edge in back-right slot but flipped.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U' R' U2 R U' R'", "notes": "" }
+      ]
+    },
+
+    {
+      "id": "f2l-38",
+      "name": "Both in slot — corner correct, edge wrong slot",
+      "category": "advanced",
+      "slot": "FR",
+      "scramble": "R U' R' U' R U R' U' R U' R'",
+      "recognition": "Corner is in the correct slot and correctly placed. Edge is in a different middle slot. Requires 11-move extraction and reinsertion.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U' R' U' R U R' U' R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-39",
+      "name": "Both in slot — corner wrong orientation, edge wrong slot",
+      "category": "advanced",
+      "slot": "FR",
+      "scramble": "R U R' U R U' R' U R U' R'",
+      "recognition": "Corner in FR slot but misoriented (white sticker not on bottom). Edge in a different slot. Both pieces need extracting.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U R' U R U' R' U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-40",
+      "name": "Both in wrong slots — extract and pair",
+      "category": "advanced",
+      "slot": "FR",
+      "scramble": "R U' R' U R U2 R' U R U' R'",
+      "recognition": "Both corner and edge are in middle slots but not the correct ones. Longest extraction case.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U' R' U R U2 R' U R U' R'", "notes": "" }
+      ]
+    },
+    {
+      "id": "f2l-41",
+      "name": "Corner in slot flipped, edge in slot flipped",
+      "category": "advanced",
+      "slot": "FR",
+      "scramble": "R U R' U' R U R' U' R U R'",
+      "recognition": "Both pieces are in their respective slots but both wrongly oriented. Classic 'flip everything' case.",
+      "algorithms": [
+        { "label": "Main", "moves": "R U R' U' R U R' U' R U R'", "notes": "Sexy move × 3" }
+      ]
+    }
+  ]
+}
