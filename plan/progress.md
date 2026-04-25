@@ -1,11 +1,11 @@
 # Project Progress
 
-## Status: Sprint 1 complete, Sprint 2 in progress
+## Status: Sprint 2 complete, Sprint 3 remaining
 
 | Sprint | Status | Notes |
 |--------|--------|-------|
 | Sprint 1 — Correctness | ✅ done | Data fixed, bugs fixed, a11y P1s addressed |
-| Sprint 2 — Learning usability | 🔄 in progress | about.html content, intuitive F2L |
+| Sprint 2 — Learning usability | ✅ done | about.html rewrite, recognition hints, mode toggle, setup display |
 | Sprint 3 — Polish | ⬜ not started | |
 
 GitHub Pages: https://mikhailvs.github.io/f2l-guide/ (main branch root)
@@ -44,17 +44,18 @@ GitHub Pages: https://mikhailvs.github.io/f2l-guide/ (main branch root)
 - [x] Updated case counts to 38 everywhere
 - [x] Disabled viewer buttons until player initialises
 
-## Sprint 2 — Remaining
+## Sprint 2 — Completed
 
-- [ ] about.html: "Intuitive F2L first" section (PED-1)
-- [ ] about.html: Glossary — trigger, AUF, sexy move, pairing, flipped edge (PED-2)
-- [ ] about.html: Trigger mechanics section (PED-5)
-- [ ] about.html: Add x/y/z rotations, M/S/E slices, direction convention (STD-1)
-- [ ] about.html: Fix learning order to match index.html
-- [ ] index.html: Hero copy rewrite for learner persona
-- [ ] cases.json: Add `subgroup` field to both-in-top cases (white-up/right/front)
-- [ ] cases.html: Render sub-group headings in Both in Top grid
-- [ ] Display setup scramble as copyable text on cards (UX-7) — depends on Sprint 1 ✅
+- [x] about.html: Full 11-section rewrite with intuitive F2L, concepts glossary, trigger mechanics
+- [x] about.html: x/y/z rotations, M/S/E slices, direction convention
+- [x] about.html: Table of contents, callout boxes, structured learning order
+- [x] index.html: Hero copy rewritten for learner persona
+- [x] index.html: "Start Here" card featured, stale category references fixed
+- [x] cases.json: All 38 recognition hints rewritten to FIND/WHITE/EDGE/CONFIRM template
+- [x] cases.json: subgroup field added to both-in-top cases
+- [x] cases.html/js: Subgroup headings in Both in Top grid
+- [x] cases.html/js: Setup scramble panel with Copy button on every card
+- [x] cases.html/js: Learning/Reference mode toggle (sessionStorage)
 
 ## Sprint 3 — Remaining
 
