@@ -1,5 +1,5 @@
 {
-  "_note": "38 cases. setup = inverse of primary algorithm. All cases target FR slot, white bottom, yellow top. Removed: f2l-06/07 (duplicates), f2l-41 (impossible). Category corner-in-top = corner free in top layer, edge in middle slot.",
+  "_note": "36 cases. setup = inverse of primary algorithm. All cases target FR slot, white bottom, yellow top. Removed: f2l-06/07 (duplicates of f2l-01/02), f2l-41 (impossible), f2l-03/04 (AUF variants — same geometry as f2l-01/02, different starting angle; now explained in about.html). Category corner-in-top = corner free in top layer, edge in middle slot. Algorithms manually reviewed 2026-04-25.",
   "cases": [
     {
       "id": "f2l-01",
@@ -7,7 +7,7 @@
       "category": "easy",
       "slot": "FR",
       "setup": "R U R' U'",
-      "recognition": "FIND: Look in the top layer for a corner-edge pair that is already touching — the non-white color on the corner faces the same direction as the matching color on the edge.\nWHITE: White sticker is on the right face of the corner (facing R), the pair is ready to slide into the slot.\nEDGE: Edge is directly adjacent to the corner, colors aligned.\nCONFIRM: One U move aligns the pair over the FR slot, then R U' R' inserts it. If you need U2 instead of U, that is f2l-03.",
+      "recognition": "FIND: Look in the top layer for a corner-edge pair that is already touching — the non-white color on the corner faces the same direction as the matching color on the edge.\nWHITE: White sticker is on the right face of the corner (facing R), the pair is ready to slide into the slot.\nEDGE: Edge is directly adjacent to the corner, colors aligned.\nCONFIRM: AUF (any number of U turns) to align the pair above the FR slot, then R U' R' inserts it. The number of AUF turns is not a separate case — just rotate U until the pair is above the slot.",
       "algorithms": [
         { "label": "Main", "moves": "U R U' R'", "notes": "U = AUF to align; R U' R' = insertion trigger" }
       ]
@@ -18,31 +18,9 @@
       "category": "easy",
       "slot": "FR",
       "setup": "F' U' F U",
-      "recognition": "FIND: Pair is formed in the top layer — corner and edge are touching with colors aligned.\nWHITE: White sticker faces the front (F face) on the corner.\nEDGE: Edge is adjacent, colors matched.\nCONFIRM: One U' aligns the pair for the front-side insert F' U F. If you need U2, that is f2l-04.",
+      "recognition": "FIND: Pair is formed in the top layer — corner and edge are touching with colors aligned.\nWHITE: White sticker faces the front (F face) on the corner.\nEDGE: Edge is adjacent, colors matched.\nCONFIRM: AUF to align the pair above the FR slot, then F' U F inserts it. Mirror of f2l-01.",
       "algorithms": [
         { "label": "Main", "moves": "U' F' U F", "notes": "U' = AUF to align; F' U F = insertion trigger" }
-      ]
-    },
-    {
-      "id": "f2l-03",
-      "name": "Pair formed — AUF twice, insert right",
-      "category": "easy",
-      "slot": "FR",
-      "setup": "R U R' U2",
-      "recognition": "FIND: Pair is formed in the top layer, but sitting at the back-left position — two U turns away from the insert position.\nWHITE: White sticker faces right on the corner.\nEDGE: Colors matched, pair intact.\nCONFIRM: This is f2l-01 with a U2 AUF prepended. The pair and case are geometrically identical; only the starting U-layer angle differs.",
-      "algorithms": [
-        { "label": "Main", "moves": "U2 R U' R'", "notes": "U2 = AUF to align from back position" }
-      ]
-    },
-    {
-      "id": "f2l-04",
-      "name": "Pair formed — AUF twice, insert left",
-      "category": "easy",
-      "slot": "FR",
-      "setup": "F' U' F U2",
-      "recognition": "FIND: Pair formed in top layer, at the back-right position — needs U2 to reach the front insert position.\nWHITE: White sticker faces front on the corner.\nEDGE: Colors matched, pair intact.\nCONFIRM: This is f2l-02 with a U2 AUF. Same case, different starting angle.",
-      "algorithms": [
-        { "label": "Main", "moves": "U2 F' U F", "notes": "U2 = AUF to align from back position" }
       ]
     },
     {

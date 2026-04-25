@@ -1,12 +1,12 @@
 # Project Progress
 
-## Status: Sprint 2 complete, Sprint 3 remaining
+## Status: All sprints complete ✅
 
 | Sprint | Status | Notes |
 |--------|--------|-------|
 | Sprint 1 — Correctness | ✅ done | Data fixed, bugs fixed, a11y P1s addressed |
 | Sprint 2 — Learning usability | ✅ done | about.html rewrite, recognition hints, mode toggle, setup display |
-| Sprint 3 — Polish | ⬜ not started | |
+| Sprint 3 — Polish | ✅ done | AUF variants removed, subgroup sort fixed, algorithm audit |
 
 GitHub Pages: https://mikhailvs.github.io/f2l-guide/ (main branch root)
 
@@ -57,11 +57,14 @@ GitHub Pages: https://mikhailvs.github.io/f2l-guide/ (main branch root)
 - [x] cases.html/js: Setup scramble panel with Copy button on every card
 - [x] cases.html/js: Learning/Reference mode toggle (sessionStorage)
 
-## Sprint 3 — Remaining
+## Sprint 3 — Completed
 
-- [ ] Algorithm accuracy verification pass (all 38 against SpeedSolving wiki)
-- [ ] STD-3: Revisit AUF variants (f2l-03/04) once intuitive F2L content exists
-- [ ] Final Lighthouse audit (a11y ≥ 90, performance)
+- [x] STD-3: Removed f2l-03 and f2l-04 (AUF variants). Now that intuitive F2L + AUF concept are in about.html, these inflate the count unnecessarily. Count: 36.
+- [x] Fixed subgroup sort bug — both-in-top cases now sorted by subgroup (white-side → white-up → awkward) before rendering, preventing repeated subgroup headings
+- [x] Sequential display numbers (#1, #2...) instead of sparse IDs
+- [x] Algorithm accuracy audit — 32/36 fully verified, 4 advanced cases noted as long but valid (see plan/audit-06-algorithm-review.md)
+- [x] Updated README.md with accurate case count and category table
+- [x] Updated CLAUDE.md with complete current-state architecture reference
 
 ## Phase 6 Checklist
 

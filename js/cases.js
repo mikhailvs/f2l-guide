@@ -17,6 +17,9 @@ const SUBGROUPS = {
   'awkward':     'Awkward diagonals',
 };
 
+const CATEGORY_ORDER = { easy: 0, 'both-in-top': 1, 'corner-in-slot': 2, 'corner-in-top': 3, advanced: 4 };
+const SUBGROUP_ORDER = { 'white-side': 0, 'white-up': 1, 'awkward': 2 };
+
 // JS owns chip colors — CSS face-color rules were removed (they were dead)
 // F and L use dark text: white on green = 3.39:1 (fails AA), white on orange = 3.05:1 (fails AA)
 const FACE_BG   = { U: '#FFD500', R: '#E03030', F: '#30A030', D: '#e8e8e8', L: '#E07820', B: '#3060E0' };
@@ -148,10 +151,25 @@ function renderCases() {
   if (!grid) return;
 
   const learned = getLearnedSet();
-  const visible = allCases.filter(c => {
+  let visible = allCases.filter(c => {
     if (activeFilter === 'all') return true;
     if (activeFilter === 'learned') return learned.has(c.id);
     return c.category === activeFilter;
+  });
+
+  // Sort by category order, then by subgroup within both-in-top.
+  // Within the same subgroup (or non-both-in-top category) preserve original JSON order.
+  const originalIndex = new Map(allCases.map((c, i) => [c.id, i]));
+  visible = [...visible].sort((a, b) => {
+    const catA = CATEGORY_ORDER[a.category] ?? 99;
+    const catB = CATEGORY_ORDER[b.category] ?? 99;
+    if (catA !== catB) return catA - catB;
+    if (a.category === 'both-in-top') {
+      const sgA = SUBGROUP_ORDER[a.subgroup] ?? 99;
+      const sgB = SUBGROUP_ORDER[b.subgroup] ?? 99;
+      if (sgA !== sgB) return sgA - sgB;
+    }
+    return (originalIndex.get(a.id) ?? 0) - (originalIndex.get(b.id) ?? 0);
   });
 
   if (countEl) {
@@ -160,9 +178,10 @@ function renderCases() {
 
   const fragment = document.createDocumentFragment();
   let lastSubgroup = null;
+  let displayNum = 0;
 
   visible.forEach(c => {
-    // Render subgroup headings within both-in-top when not filtered to a single category
+    displayNum++;
     if (c.category === 'both-in-top' && c.subgroup && c.subgroup !== lastSubgroup) {
       lastSubgroup = c.subgroup;
       const heading = document.createElement('div');
@@ -173,14 +192,14 @@ function renderCases() {
     } else if (c.category !== 'both-in-top') {
       lastSubgroup = null;
     }
-    fragment.appendChild(buildCard(c, learned.has(c.id)));
+    fragment.appendChild(buildCard(c, learned.has(c.id), displayNum));
   });
 
   grid.replaceChildren(fragment);
   observeViewers();
 }
 
-function buildCard(c, isLearned) {
+function buildCard(c, isLearned, displayNum) {
   const card = document.createElement('article');
   card.className = 'case-card' + (isLearned ? ' learned' : '');
   card.setAttribute('aria-label', `Case ${c.id}: ${c.name}`);
@@ -210,7 +229,7 @@ function buildCard(c, isLearned) {
 
     <div class="case-card-body">
       <div class="case-card-header">
-        <span class="case-id">#${c.id.replace('f2l-', '')}</span>
+        <span class="case-id">#${displayNum}</span>
         <span class="badge ${badgeClass}">${badgeLabel}</span>
       </div>
 

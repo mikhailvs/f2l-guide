@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About F2L — F2L Guide</title>
-  <meta name="description" content="What is F2L? Learn the core concepts, WCA notation, intuitive solving, and the right order to learn all 38 cases.">
+  <meta name="description" content="What is F2L? Learn the core concepts, WCA notation, intuitive solving, and the right order to learn all 36 cases.">
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
@@ -65,7 +65,7 @@
       </p>
       <ul class="prose-list">
         <li><strong>C</strong>ross — solve the four edge pieces on the bottom face</li>
-        <li><strong>F2L</strong> — fill the four corner-edge slots above the cross (38 cases)</li>
+        <li><strong>F2L</strong> — fill the four corner-edge slots above the cross (36 cases)</li>
         <li><strong>OLL</strong> — orient all pieces on the last layer (57 cases)</li>
         <li><strong>PLL</strong> — permute all pieces on the last layer (21 cases)</li>
       </ul>
@@ -318,7 +318,7 @@
         rotating the cube so your target slot is always at front-right before starting.
       </p>
       <p>
-        Each of the 38 cases describes a unique position and orientation of one corner-edge pair relative
+        Each of the 36 cases describes a unique position and orientation of one corner-edge pair relative
         to its slot. The case determines the most efficient sequence to insert it. The key insight is that
         every insertion uses the same two moves at its core — either <code>R U' R'</code> (right-side insert)
         or <code>F' U F</code> (front-side insert). Every algorithm is just setup moves that get the pair
