@@ -120,9 +120,10 @@ function renderFilterBar() {
     const btn = document.createElement('button');
     btn.className = 'filter-btn' + (cat.id === 'learned' ? ' filter-btn-learned' : '');
     btn.dataset.filter = cat.id;
-    btn.setAttribute('aria-label', `Filter by ${cat.label}`);
     btn.setAttribute('aria-pressed', cat.id === activeFilter ? 'true' : 'false');
-    btn.innerHTML = `${cat.label} <span class="count">${count}</span>`;
+    // No aria-label: accessible name = visible text ("Both in Top 15")
+    // Count is aria-hidden so the accessible name is just the category label
+    btn.innerHTML = `${cat.label} <span class="count" aria-hidden="true">${count}</span>`;
     btn.addEventListener('click', () => setFilter(cat.id));
     bar.appendChild(btn);
   });
@@ -203,7 +204,6 @@ function buildCard(c, isLearned, displayNum) {
   const card = document.createElement('article');
   card.className = 'case-card' + (isLearned ? ' learned' : '');
   card.setAttribute('aria-label', `Case ${c.id}: ${c.name}`);
-  card.setAttribute('role', 'listitem');
 
   const badgeClass = `badge-${c.category}`;
   const badgeLabel = CATEGORIES.find(cat => cat.id === c.category)?.label ?? c.category;
@@ -285,8 +285,7 @@ function buildCard(c, isLearned, displayNum) {
       <div class="case-card-footer">
         <button class="learned-btn ${isLearned ? 'done' : ''}"
                 data-id="${c.id}"
-                aria-pressed="${isLearned}"
-                aria-label="${isLearned ? 'Unmark' : 'Mark'} case ${c.id} as learned">
+                aria-pressed="${isLearned}">
           ${isLearned ? '✓ Learned' : '○ Mark learned'}
         </button>
       </div>
@@ -321,7 +320,6 @@ function buildCard(c, isLearned, displayNum) {
     setLearned(id, nowLearned);
     btn.classList.toggle('done', nowLearned);
     btn.setAttribute('aria-pressed', String(nowLearned));
-    btn.setAttribute('aria-label', `${nowLearned ? 'Unmark' : 'Mark'} case ${id} as learned`);
     btn.textContent = nowLearned ? '✓ Learned' : '○ Mark learned';
     card.classList.toggle('learned', nowLearned);
     renderProgressBar(allCases.length);
@@ -344,8 +342,15 @@ function buildCard(c, isLearned, displayNum) {
 }
 
 function refreshLearnedCount() {
-  const btn = document.querySelector('[data-filter="learned"] .count');
-  if (btn) btn.textContent = getLearnedSet().size;
+  document.querySelectorAll('.filter-btn .count').forEach(span => {
+    const filterId = span.closest('.filter-btn')?.dataset.filter;
+    if (!filterId) return;
+    if (filterId === 'learned') {
+      span.textContent = getLearnedSet().size;
+    } else if (filterId === 'all') {
+      span.textContent = allCases.length;
+    }
+  });
 }
 
 // ── Recognition hint formatter ────────────────────────────

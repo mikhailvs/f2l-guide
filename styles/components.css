@@ -47,7 +47,7 @@ body.mode-reference .recognition-toggle { color: var(--text-subtle); }
 
 .setup-toggle {
   font-size: var(--text-xs);
-  color: var(--text-subtle);
+  color: var(--text-subtle-plus);   /* inside card (bg-surface): 4.97:1 ✓ */
   padding: 0;
   transition: color var(--transition-fast);
   display: flex;
@@ -238,7 +238,7 @@ body.mode-reference .recognition-toggle { color: var(--text-subtle); }
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--text-subtle);
+  color: var(--text-subtle-plus);   /* table headers on bg-base page: fine */
   border-bottom: 1px solid var(--border-strong);
 }
 .notation-table td {
@@ -419,7 +419,7 @@ a.lo-link:hover { color: var(--accent); text-decoration: none; }
 }
 .filter-btn .count {
   font-size: var(--text-xs);
-  opacity: 0.7;
+  color: var(--text-subtle-plus);  /* explicit color, no opacity — opacity on parent fails contrast */
 }
 
 .filter-sep {
@@ -522,6 +522,30 @@ a.lo-link:hover { color: var(--accent); text-decoration: none; }
   height: 200px;
   position: relative;
 }
+
+.viewer-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  text-align: center;
+}
+.viewer-fallback-label {
+  font-size: var(--text-xs);
+  color: var(--text-subtle-plus);
+}
+.viewer-fallback-setup {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+.viewer-fallback-setup code {
+  color: var(--accent);
+  font-family: "SF Mono", Consolas, monospace;
+}
 twisty-player {
   width: 180px;
   height: 180px;
@@ -569,7 +593,7 @@ twisty-player {
 
 .move-count {
   font-size: var(--text-xs);
-  color: var(--text-subtle);
+  color: var(--text-subtle-plus);   /* inside card (bg-surface): 4.97:1 ✓ */
   font-weight: 500;
   letter-spacing: 0;
   text-transform: none;
@@ -587,7 +611,7 @@ twisty-player {
   align-items: flex-start;
   gap: var(--space-2);
   font-size: var(--text-xs);
-  color: var(--text-subtle);
+  color: var(--text-muted);       /* --text-subtle fails on bg-elevated; use muted */
   background: var(--bg-elevated);
   border-radius: var(--radius-sm);
   padding: var(--space-2) var(--space-3);
@@ -677,7 +701,7 @@ twisty-player {
   padding: var(--space-2);
   border-radius: var(--radius);
   background: var(--bg-elevated);
-  color: var(--text-muted);
+  color: var(--text-subtle-plus);   /* #8e8ea0 on #25253a = 4.54:1 ✓ */
   font-size: var(--text-xs);
   font-weight: 600;
   transition: background var(--transition-fast), color var(--transition-fast);
@@ -688,7 +712,8 @@ twisty-player {
   color: var(--text-primary);
 }
 .viewer-btn:disabled {
-  opacity: 0.4;
+  /* WCAG 1.4.3 exempts inactive UI components from contrast requirements */
+  color: var(--text-subtle);
   cursor: not-allowed;
 }
 
@@ -696,7 +721,7 @@ twisty-player {
 
 .recognition-toggle {
   font-size: var(--text-xs);
-  color: var(--text-subtle);
+  color: var(--text-subtle-plus);   /* inside card (bg-surface): 4.97:1 ✓ */
   text-align: left;
   padding: 0;
   display: flex;
@@ -725,7 +750,7 @@ twisty-player {
 
 .alt-toggle {
   font-size: var(--text-xs);
-  color: var(--text-subtle);
+  color: var(--text-subtle-plus);   /* inside card (bg-surface): 4.97:1 ✓ */
   padding: 0;
   transition: color var(--transition-fast);
 }

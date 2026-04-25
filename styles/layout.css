@@ -115,7 +115,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-subtle);
+  color: var(--text-subtle-plus);
   margin-bottom: var(--space-3);
 }
 
