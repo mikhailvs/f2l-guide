@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About F2L — F2L Guide</title>
-  <meta name="description" content="What is F2L? Learn WCA move notation, understand the CFOP method, and get a recommended learning order for all 41 F2L cases.">
+  <meta name="description" content="What is F2L? Learn the core concepts, WCA notation, intuitive solving, and the right order to learn all 38 cases.">
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
@@ -35,75 +35,195 @@
 
 <main id="main-content">
   <div class="page">
-    <div class="prose" style="max-width: 740px;">
 
-      <h1 style="font-size: var(--text-3xl); letter-spacing: -0.03em; margin-bottom: var(--space-3);">About F2L</h1>
-      <p style="font-size: var(--text-lg); color: var(--text-muted); margin-bottom: 0;">
-        Everything you need to understand the method before learning the cases.
+    <!-- Page nav -->
+    <nav class="about-toc" aria-label="On this page">
+      <p class="section-label">On this page</p>
+      <ul class="toc-list">
+        <li><a href="#what-is-cfop">What is CFOP?</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#intuitive">Solve It Before You Memorize It</a></li>
+        <li><a href="#concepts">Five Terms You'll See Everywhere</a></li>
+        <li><a href="#notation">Move Notation</a></li>
+        <li><a href="#how-f2l-works">How F2L Works</a></li>
+        <li><a href="#learning-order">Recommended Learning Order</a></li>
+        <li><a href="#how-to-use">How to Use This Site</a></li>
+      </ul>
+    </nav>
+
+    <div class="prose">
+
+      <h1 id="top" style="font-size: var(--text-3xl); letter-spacing: -0.03em; margin-bottom: var(--space-3);">About F2L</h1>
+      <p style="font-size: var(--text-lg); color: var(--text-muted); margin-bottom: var(--space-10);">
+        Read this before you open the cases page.
       </p>
 
-      <!-- What is CFOP -->
-      <h2>What is CFOP?</h2>
+      <!-- ── 1. What is CFOP ─────────────────────────────── -->
+      <h2 id="what-is-cfop">What is CFOP?</h2>
       <p>
-        CFOP (also called Fridrich Method) is the most popular speedcubing method. It solves the cube in four steps:
+        CFOP (also called the Fridrich Method) is the most widely used speedcubing method. It solves the cube in four steps:
       </p>
-      <ul style="padding-left: var(--space-4); margin-bottom: var(--space-4);">
-        <li style="list-style: disc; margin-bottom: var(--space-2); color: var(--text-muted);"><strong style="color: var(--text-primary);">C</strong>ross — solve the four edge pieces on the bottom face</li>
-        <li style="list-style: disc; margin-bottom: var(--space-2); color: var(--text-muted);"><strong style="color: var(--text-primary);">F2L</strong> — fill the four corner-edge pairs in the first two layers</li>
-        <li style="list-style: disc; margin-bottom: var(--space-2); color: var(--text-muted);"><strong style="color: var(--text-primary);">OLL</strong> — orient all pieces on the last layer (57 cases)</li>
-        <li style="list-style: disc; margin-bottom: var(--space-2); color: var(--text-muted);"><strong style="color: var(--text-primary);">PLL</strong> — permute all pieces on the last layer (21 cases)</li>
+      <ul class="prose-list">
+        <li><strong>C</strong>ross — solve the four edge pieces on the bottom face</li>
+        <li><strong>F2L</strong> — fill the four corner-edge slots above the cross (38 cases)</li>
+        <li><strong>OLL</strong> — orient all pieces on the last layer (57 cases)</li>
+        <li><strong>PLL</strong> — permute all pieces on the last layer (21 cases)</li>
       </ul>
       <p>
-        F2L is where most of your time is spent and where the biggest gains come from. Learning all 41 cases
-        eliminates the need to break the cross apart, saving 10–20 seconds per solve.
+        F2L is where most of your solve time goes — typically 40–60% of a full solve. It is also where the
+        biggest gains come from. Learning to solve it efficiently, without breaking the cross, is what
+        separates beginners from intermediate solvers. F2L is learnable intuitively before algorithms —
+        and you should learn it that way first.
       </p>
 
-      <!-- Prerequisites -->
-      <h2>Prerequisites</h2>
-      <p>
-        Before learning F2L you should be able to:
-      </p>
-      <ul style="padding-left: var(--space-4); margin-bottom: var(--space-4);">
-        <li style="list-style: disc; margin-bottom: var(--space-2); color: var(--text-muted);">Solve a Rubik's cube using any method (beginner layer-by-layer is fine)</li>
-        <li style="list-style: disc; margin-bottom: var(--space-2); color: var(--text-muted);">Consistently solve the cross intuitively without algorithms</li>
-        <li style="list-style: disc; margin-bottom: var(--space-2); color: var(--text-muted);">Read WCA move notation (explained below)</li>
+      <!-- ── 2. Prerequisites ───────────────────────────── -->
+      <h2 id="prerequisites">Prerequisites</h2>
+      <p>Before learning F2L you should be able to:</p>
+      <ul class="prose-list">
+        <li>Solve a Rubik's cube using any method — beginner layer-by-layer is fine</li>
+        <li>Consistently solve the cross intuitively, without algorithms</li>
+        <li>Read WCA move notation (explained <a href="#notation">below</a>)</li>
+        <li>Understand that the cross pieces stay solved while you work above them — if you are still
+            accidentally breaking the cross, pause here and practice the cross alone</li>
       </ul>
       <p>
-        All cases on this site assume <strong>white cross on bottom, yellow on top</strong> — the standard CFOP orientation.
-        All algorithms target the <strong>front-right (FR) slot</strong>.
+        All cases on this site assume <strong>white cross on bottom, yellow on top</strong> — the standard CFOP
+        orientation. All algorithms target the <strong>front-right (FR) slot</strong>. Before starting each pair,
+        rotate the cube so your target slot is at the front-right.
       </p>
 
-      <!-- Move Notation -->
-      <h2>Move Notation</h2>
+      <!-- ── 3. Intuitive F2L ───────────────────────────── -->
+      <h2 id="intuitive">Solve It Before You Memorize It</h2>
       <p>
-        Every algorithm uses standard WCA notation. Each letter represents one face of the cube.
-        A plain letter means a 90° clockwise turn. A prime (') means counter-clockwise. A 2 means 180°.
+        Every corner-edge pair can be solved without algorithms. Algorithms are shortcuts for moves you
+        would have found yourself. Learning the shortcuts without first understanding what they shortcut
+        produces brittle, ceiling-limited solving — you'll hit a wall around 45–60 seconds that algorithms
+        alone will not break.
       </p>
+
+      <h3>The core procedure</h3>
+      <ol class="prose-list prose-ol">
+        <li>
+          <strong>Find your corner and its matching edge.</strong> They share two non-white colors.
+          The white-red-green corner pairs with the red-green edge.
+        </li>
+        <li>
+          <strong>Bring both pieces to the top layer.</strong> If either is in the middle layer, use
+          a trigger to pop it out: <code>R U R'</code> pops the FR corner up; <code>U</code> moves
+          cycle the top layer to bring the edge up.
+        </li>
+        <li>
+          <strong>Pair them in the top layer.</strong> "Pairing" means positioning the corner and edge
+          so their shared colors align — the non-white color on the corner faces the same direction as
+          the matching color on the edge. Once paired, they can be inserted together as a unit.
+        </li>
+        <li>
+          <strong>Insert the pair.</strong> <code>R U' R'</code> inserts into the right side.
+          <code>F' U F</code> inserts into the front side.
+        </li>
+      </ol>
+
+      <h3>Worked example — white facing up, matched edge (f2l-05)</h3>
+      <p>
+        You see a corner with white on top and its matching edge in the top layer, colors unflipped.
+        Here is the thought process:
+      </p>
+      <ol class="prose-list prose-ol">
+        <li>Try inserting directly: <code>R U' R'</code> — the corner goes in but the edge is not paired. Undo: <code>R U R'</code>.</li>
+        <li>The problem is that white is facing up. You need to flip the corner so white will face right before inserting.</li>
+        <li>Bring the corner out to the side: <code>R U R'</code>. Now the corner is above-right with white facing the U face.</li>
+        <li>AUF: <code>U'</code> to align edge away. Then <code>R U2 R'</code> to bring the corner back up — now white faces the front.</li>
+        <li>AUF to align: <code>U'</code>. Now corner white faces right, edge is matched. Insert: <code>R U R'</code>. Wait — too many moves. Replan.</li>
+        <li>Cleaner: from the start, <code>R U2 R'</code> flips the corner (white now faces R). Then <code>U'</code> aligns edge. Then <code>R U R'</code> inserts. That's <code>R U2 R' U' R U R'</code> — which is exactly the algorithm.</li>
+      </ol>
+
+      <div class="callout">
+        <strong>The key takeaway:</strong> Once you can solve Easy Cases (f2l-01 and f2l-02) without
+        looking at the algorithm — just instinctively inserting a formed pair — you already understand
+        pairing and insertion. Every other case is a variation on getting both pieces into a pairable
+        position. The algorithms are just efficient paths to that position.
+      </div>
+
+      <!-- ── 4. Core Concepts ───────────────────────────── -->
+      <h2 id="concepts">Five Terms You'll See Everywhere</h2>
+      <p>These terms appear throughout the recognition hints and algorithm notes. Define them now.</p>
+
+      <dl class="concept-list">
+        <dt>Trigger</dt>
+        <dd>
+          A short, reversible move sequence used as a building block inside larger algorithms.
+          The two fundamental F2L triggers are <code>R U R'</code> and <code>F' U' F</code>.
+          Almost every algorithm in this guide is one or two triggers chained together with setup moves.
+          Recognizing the trigger inside an algorithm lets you learn it as a shape, not a list of moves.
+        </dd>
+
+        <dt>Sexy Move</dt>
+        <dd>
+          The informal name for <code>R U R' U'</code> — the single most important sequence in all of
+          speedcubing. You will execute it thousands of times across F2L, OLL, and PLL. It is called
+          "sexy" because of how naturally it flows under the fingers. Its inverse (the "anti-sexy" or
+          "untrigger") is <code>U R U' R'</code>.
+        </dd>
+
+        <dt>AUF</dt>
+        <dd>
+          <em>Adjust U Face.</em> A U, U', or U2 move at the start of a case to align pieces with the
+          correct slot before executing the main algorithm. When a recognition hint says "AUF to align,"
+          it means: rotate the U face until your piece is above the correct position, then proceed.
+          AUF is not a separate case — it is part of case recognition.
+        </dd>
+
+        <dt>Pairing</dt>
+        <dd>
+          Positioning a corner and its matching edge in the top layer so their shared colors face the
+          same direction — the pair is "formed" and can be inserted as one unit. The Easy Cases (f2l-01,
+          f2l-02) start with the pair already formed. All other cases require setup moves to form the
+          pair first.
+        </dd>
+
+        <dt>Flipped Edge</dt>
+        <dd>
+          An edge piece that is in the top layer but with its colors facing the wrong way: the non-white
+          color faces up (toward the U face) instead of sideways (toward the side face). Practical test:
+          look at the edge from above — if you can see your slot's side color on the top face, the edge
+          is flipped. Flipped edges require one extra trigger to orient before pairing.
+        </dd>
+      </dl>
+
+      <!-- ── 5. Move Notation ───────────────────────────── -->
+      <h2 id="notation">Move Notation</h2>
+      <p>
+        Every algorithm uses standard WCA notation. Read algorithms left to right — each token is one
+        move, executed in sequence.
+      </p>
+
+      <h3>Face moves</h3>
+      <p>Each letter names a face. A plain letter = 90° clockwise. Prime (') = counter-clockwise. 2 = 180°.</p>
 
       <div class="notation-grid">
         <div class="notation-cell">
-          <div class="notation-chip-large move-U" style="background: var(--face-U);">U</div>
+          <div class="notation-chip-large" style="background: var(--face-U); color: #000;">U</div>
           <div class="notation-cell-info">
             <div class="notation-cell-name">U — Up</div>
             <div class="notation-cell-desc">Top face, clockwise</div>
           </div>
         </div>
         <div class="notation-cell">
-          <div class="notation-chip-large move-R" style="background: var(--face-R); color: #fff;">R</div>
+          <div class="notation-chip-large" style="background: var(--face-R); color: #fff;">R</div>
           <div class="notation-cell-info">
             <div class="notation-cell-name">R — Right</div>
             <div class="notation-cell-desc">Right face, clockwise</div>
           </div>
         </div>
         <div class="notation-cell">
-          <div class="notation-chip-large" style="background: var(--face-F); color: #fff;">F</div>
+          <div class="notation-chip-large" style="background: var(--face-F); color: #1a1a00;">F</div>
           <div class="notation-cell-info">
             <div class="notation-cell-name">F — Front</div>
             <div class="notation-cell-desc">Front face, clockwise</div>
           </div>
         </div>
         <div class="notation-cell">
-          <div class="notation-chip-large" style="background: var(--face-L); color: #fff;">L</div>
+          <div class="notation-chip-large" style="background: var(--face-L); color: #1a1a00;">L</div>
           <div class="notation-cell-info">
             <div class="notation-cell-name">L — Left</div>
             <div class="notation-cell-desc">Left face, clockwise</div>
@@ -117,7 +237,7 @@
           </div>
         </div>
         <div class="notation-cell">
-          <div class="notation-chip-large" style="background: var(--face-D);">D</div>
+          <div class="notation-chip-large" style="background: var(--face-D); color: #000;">D</div>
           <div class="notation-cell-info">
             <div class="notation-cell-name">D — Down</div>
             <div class="notation-cell-desc">Bottom face, clockwise</div>
@@ -143,65 +263,146 @@
         </div>
       </div>
 
-      <!-- F2L Mechanics -->
-      <h2>How F2L Works</h2>
+      <div class="callout" style="margin-top: var(--space-6);">
+        <strong>Direction convention:</strong> "Clockwise" always means clockwise when you are looking
+        directly at that face from outside the cube. U clockwise moves the front-right corner of the top
+        layer away from you. R clockwise moves the front-right corner of the right face upward. B and D
+        are the most confusing — B clockwise moves the top of the back face to the right (from your
+        perspective looking at the back); D clockwise is like U but inverted.
+      </div>
+
+      <h3>Rotations (x, y, z)</h3>
       <p>
-        The first two layers contain four corner-edge pairs. Each pair shares two colors — for example, on a standard
-        cube with white bottom, the front-right slot holds the white-red-green corner and the red-green edge.
+        Rotations move the entire cube in your hands without changing any pieces relative to each other.
+        They redefine which face is "Front" and "Right." In F2L you will mostly see <code>y</code> —
+        rotating to bring a different slot to the front-right.
+      </p>
+      <table class="notation-table">
+        <thead>
+          <tr><th>Move</th><th>Axis</th><th>Effect</th><th>Common use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>y</code></td><td>Up–Down</td><td>Front face becomes Left</td><td>Rotate to reach a different F2L slot</td></tr>
+          <tr><td><code>y'</code></td><td>Up–Down</td><td>Front face becomes Right</td><td>Rotate the other way</td></tr>
+          <tr><td><code>x</code></td><td>Right–Left</td><td>Front face tilts down</td><td>Rare in F2L; used in some OLL algs</td></tr>
+          <tr><td><code>x'</code></td><td>Right–Left</td><td>Front face tilts up</td><td>Same</td></tr>
+          <tr><td><code>z</code></td><td>Front–Back</td><td>Top face tilts right</td><td>Rare in standard F2L</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Slice moves (M, S, E)</h3>
+      <p>
+        Slice moves turn the middle layer between two face layers. They do not appear in this site's F2L
+        algorithms, but you will encounter them in OLL and PLL resources. Listed here for completeness.
+      </p>
+      <table class="notation-table">
+        <thead>
+          <tr><th>Move</th><th>Middle layer</th><th>Equivalent to</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>M</code></td><td>Between L and R</td><td>L direction</td></tr>
+          <tr><td><code>S</code></td><td>Between F and B</td><td>F direction</td></tr>
+          <tr><td><code>E</code></td><td>Between U and D</td><td>D direction</td></tr>
+        </tbody>
+      </table>
+
+      <!-- ── 6. How F2L Works ───────────────────────────── -->
+      <h2 id="how-f2l-works">How F2L Works</h2>
+      <p>
+        The first two layers of a solved cube contain four corner-edge slots. Each slot is named for its
+        position: FR (front-right), FL (front-left), BR (back-right), BL (back-left). Each slot holds one
+        corner and one edge that share two colors.
       </p>
       <p>
-        The goal of F2L is to join each corner with its matching edge (form a "pair") and insert the pair into the
-        correct slot simultaneously. Done well, this is faster than solving the corner and edge separately.
+        The goal is to fill all four slots without disturbing the cross. You work one slot at a time,
+        rotating the cube so your target slot is always at front-right before starting.
       </p>
       <p>
-        Each of the 41 cases describes a unique position and orientation of one corner-edge pair relative to its slot.
-        The case determines which algorithm inserts it most efficiently.
+        Each of the 38 cases describes a unique position and orientation of one corner-edge pair relative
+        to its slot. The case determines the most efficient sequence to insert it. The key insight is that
+        every insertion uses the same two moves at its core — either <code>R U' R'</code> (right-side insert)
+        or <code>F' U F</code> (front-side insert). Every algorithm is just setup moves that get the pair
+        into a position where one of those inserts works cleanly.
       </p>
 
-      <!-- Learning Order -->
-      <h2>Recommended Learning Order</h2>
-      <p>Work through categories in this order:</p>
-      <ol style="padding-left: var(--space-6); margin-bottom: var(--space-4);">
-        <li style="margin-bottom: var(--space-3); color: var(--text-muted);">
-          <strong style="color: var(--text-primary);">Easy Cases</strong> — Pair is already formed. Just slot it in.
-          These are intuitive and build confidence. <a href="cases.html#easy">4 cases →</a>
+      <!-- ── 7. Learning Order ──────────────────────────── -->
+      <h2 id="learning-order">Recommended Learning Order</h2>
+      <p>
+        Work through groups in this sequence. Within each group, learn the cases that appear most often
+        first — frequency is a better guide than difficulty when you're starting out.
+      </p>
+      <ol class="learning-order-list">
+        <li>
+          <div class="lo-header">
+            <a href="cases.html#easy" class="lo-link">Easy Cases</a>
+            <span class="badge badge-easy">4 cases</span>
+          </div>
+          <p>Pair already formed — just insert. These are intuitive. Master them without looking at the algorithm before touching any other group.</p>
         </li>
-        <li style="margin-bottom: var(--space-3); color: var(--text-muted);">
-          <strong style="color: var(--text-primary);">Both in Top</strong> — The standard F2L situation.
-          Both pieces are free, various orientations. Learn these next.
-          <a href="cases.html#both-in-top">17 cases →</a>
+        <li>
+          <div class="lo-header">
+            <span class="lo-link">Both in Top — white right &amp; front</span>
+            <span class="badge badge-both-in-top">6 cases</span>
+          </div>
+          <p>f2l-06 through f2l-13 (white-right/front subgroup). One or two triggers. The most common cases you'll encounter during a real solve. Learn these before tackling white-up.</p>
         </li>
-        <li style="margin-bottom: var(--space-3); color: var(--text-muted);">
-          <strong style="color: var(--text-primary);">Corner in Top</strong> — Corner is free in the top layer; edge
-          is already in a middle slot and needs to be paired.
-          <a href="cases.html#corner-in-top">8 cases →</a>
+        <li>
+          <div class="lo-header">
+            <span class="lo-link">Both in Top — white up</span>
+            <span class="badge badge-both-in-top">7 cases</span>
+          </div>
+          <p>White sticker faces the ceiling. The corner needs to be flipped before inserting, requiring one extra trigger. Harder recognition but very common.</p>
         </li>
-        <li style="margin-bottom: var(--space-3); color: var(--text-muted);">
-          <strong style="color: var(--text-primary);">Corner in Slot</strong> — Corner is already in a slot
-          (right or wrong place), edge needs to come from the top.
-          <a href="cases.html#corner-in-slot">8 cases →</a>
+        <li>
+          <div class="lo-header">
+            <span class="lo-link">Both in Top — awkward diagonals</span>
+            <span class="badge badge-both-in-top">4 cases</span>
+          </div>
+          <p>Pieces are on opposite sides of the top layer and require longer setup moves. Learn these last within the both-in-top group.</p>
         </li>
-        <li style="margin-bottom: var(--space-3); color: var(--text-muted);">
-          <strong style="color: var(--text-primary);">Advanced</strong> — Pieces trapped in the wrong slots.
-          Extraction required. Learn these last.
-          <a href="cases.html#advanced">4 cases →</a>
+        <li>
+          <div class="lo-header">
+            <a href="cases.html#corner-in-top" class="lo-link">Corner in Top</a>
+            <span class="badge badge-corner-in-top">8 cases</span>
+          </div>
+          <p>Corner is free in the top layer; the edge is already in a middle slot. Often short algorithms — f2l-28 and f2l-29 are only 3 moves each.</p>
+        </li>
+        <li>
+          <div class="lo-header">
+            <a href="cases.html#corner-in-slot" class="lo-link">Corner in Slot</a>
+            <span class="badge badge-corner-in-slot">8 cases</span>
+          </div>
+          <p>Corner is already placed in the slot (correctly or not); edge needs to come from the top. The extraction pattern takes time to internalize — practice these on a physical cube.</p>
+        </li>
+        <li>
+          <div class="lo-header">
+            <a href="cases.html#advanced" class="lo-link">Advanced</a>
+            <span class="badge badge-advanced">3 cases</span>
+          </div>
+          <p>Both pieces are stuck in middle slots. Requires extraction of both before pairing and inserting. Learn these last — they are rare during a typical solve.</p>
         </li>
       </ol>
 
-      <!-- How to use this site -->
-      <h2>How to Use This Site</h2>
+      <!-- ── 8. How to Use This Site ────────────────────── -->
+      <h2 id="how-to-use">How to Use This Site</h2>
       <p>
-        Each case card shows an animated 3D cube in the scrambled (pre-algorithm) state. Press
-        <strong>Play</strong> to watch the algorithm execute. Press <strong>Reset</strong> to return to the case state.
+        Each case card on the <a href="cases.html">cases page</a> shows a 3D cube set up in the starting
+        position for that case. Press <strong>Play</strong> to watch the algorithm execute from that state.
+        Press <strong>Reset</strong> to return to the case position.
       </p>
       <p>
-        When you can recognize and execute a case without looking at the algorithm, press
-        <strong>Mark as Learned</strong>. Your progress is saved in your browser and shown in the progress bar
-        at the top of the cases page.
+        The <strong>Setup scramble</strong> on each card shows the exact sequence to apply to a fully solved
+        cube to reach that case state on a physical cube. Use it to practice on hardware.
       </p>
       <p>
-        Use the category filter buttons to focus on one group at a time. The URL updates so you can bookmark or
-        share a filtered view directly.
+        In <strong>Learning Mode</strong> (the default), recognition hints are visible on every card.
+        Switch to <strong>Reference Mode</strong> using the toggle in the filter bar if you already know
+        the cases and just want to look up an algorithm quickly.
+      </p>
+      <p>
+        When you can recognize and execute a case without reading the algorithm, press
+        <strong>Mark as Learned</strong>. Progress is saved in your browser. The recognition hint
+        collapses automatically when you mark a case learned — a small signal that you no longer need it.
       </p>
 
     </div>

@@ -1,5 +1,5 @@
 {
-  "_note": "38 cases. setup = inverse of primary algorithm, applied to solved cube to reach the case state. All cases target the FR slot, white bottom, yellow top. f2l-06/07 removed (duplicates of f2l-01/02). f2l-41 removed (geometrically impossible; (R U R' U')x3 is an OLL trick, not F2L). Renumbered sequentially.",
+  "_note": "38 cases. setup = inverse of primary algorithm. All cases target FR slot, white bottom, yellow top. Removed: f2l-06/07 (duplicates), f2l-41 (impossible). Category corner-in-top = corner free in top layer, edge in middle slot.",
   "cases": [
     {
       "id": "f2l-01",
@@ -7,9 +7,9 @@
       "category": "easy",
       "slot": "FR",
       "setup": "R U R' U'",
-      "recognition": "Corner and edge are already paired together in the top layer. The white sticker of the corner faces away from the slot (toward R face). One U turn aligns the pair above the slot for insertion.",
+      "recognition": "FIND: Look in the top layer for a corner-edge pair that is already touching — the non-white color on the corner faces the same direction as the matching color on the edge.\nWHITE: White sticker is on the right face of the corner (facing R), the pair is ready to slide into the slot.\nEDGE: Edge is directly adjacent to the corner, colors aligned.\nCONFIRM: One U move aligns the pair over the FR slot, then R U' R' inserts it. If you need U2 instead of U, that is f2l-03.",
       "algorithms": [
-        { "label": "Main", "moves": "U R U' R'", "notes": "" }
+        { "label": "Main", "moves": "U R U' R'", "notes": "U = AUF to align; R U' R' = insertion trigger" }
       ]
     },
     {
@@ -18,9 +18,9 @@
       "category": "easy",
       "slot": "FR",
       "setup": "F' U' F U",
-      "recognition": "Corner and edge are paired in the top layer. The white sticker faces away from the slot (toward F face). One U' turn aligns the pair for left-side insertion.",
+      "recognition": "FIND: Pair is formed in the top layer — corner and edge are touching with colors aligned.\nWHITE: White sticker faces the front (F face) on the corner.\nEDGE: Edge is adjacent, colors matched.\nCONFIRM: One U' aligns the pair for the front-side insert F' U F. If you need U2, that is f2l-04.",
       "algorithms": [
-        { "label": "Main", "moves": "U' F' U F", "notes": "" }
+        { "label": "Main", "moves": "U' F' U F", "notes": "U' = AUF to align; F' U F = insertion trigger" }
       ]
     },
     {
@@ -29,9 +29,9 @@
       "category": "easy",
       "slot": "FR",
       "setup": "R U R' U2",
-      "recognition": "Pair is formed and sitting at the back of the U layer. Two U turns align it for right-side insertion. Note: this is f2l-01 with a U2 AUF — the pair and case are identical, only the starting angle differs.",
+      "recognition": "FIND: Pair is formed in the top layer, but sitting at the back-left position — two U turns away from the insert position.\nWHITE: White sticker faces right on the corner.\nEDGE: Colors matched, pair intact.\nCONFIRM: This is f2l-01 with a U2 AUF prepended. The pair and case are geometrically identical; only the starting U-layer angle differs.",
       "algorithms": [
-        { "label": "Main", "moves": "U2 R U' R'", "notes": "U2 is AUF; R U' R' is the insertion trigger" }
+        { "label": "Main", "moves": "U2 R U' R'", "notes": "U2 = AUF to align from back position" }
       ]
     },
     {
@@ -40,42 +40,45 @@
       "category": "easy",
       "slot": "FR",
       "setup": "F' U' F U2",
-      "recognition": "Pair is formed and sitting at the back. Two U turns bring it to the left-side insertion position. Note: this is f2l-02 with a U2 AUF.",
+      "recognition": "FIND: Pair formed in top layer, at the back-right position — needs U2 to reach the front insert position.\nWHITE: White sticker faces front on the corner.\nEDGE: Colors matched, pair intact.\nCONFIRM: This is f2l-02 with a U2 AUF. Same case, different starting angle.",
       "algorithms": [
-        { "label": "Main", "moves": "U2 F' U F", "notes": "U2 is AUF; F' U F is the insertion trigger" }
+        { "label": "Main", "moves": "U2 F' U F", "notes": "U2 = AUF to align from back position" }
       ]
     },
     {
       "id": "f2l-05",
-      "name": "Both in top — white up, edge correct",
+      "name": "Both in top — white up, edge unflipped",
       "category": "both-in-top",
+      "subgroup": "white-up",
       "slot": "FR",
       "setup": "R U' R' U R U2 R'",
-      "recognition": "Corner is in the U layer with the white sticker facing UP. Edge is in the top layer with its non-white color matching the center color below it (not flipped). The pair is not yet formed.",
-      "shared_algorithm_note": "Same algorithm as f2l-23. Different starting positions (different category) converge to the same intermediate state.",
+      "recognition": "FIND: Look at the top layer — find the corner with white facing UP (on the U face, pointing at the ceiling).\nWHITE: White sticker is on top. Both the R and F colors of the corner are visible on the side faces.\nEDGE: Find the edge with your two slot colors. Look at the UF or UR position — the non-white edge colors face SIDEWAYS (toward F and R faces), not up. If one edge color faces up instead, you have f2l-08.\nCONFIRM: Corner white-up + edge unflipped = f2l-05.",
+      "shared_algorithm_note": "Same algorithm as f2l-23 (corner-in-slot). Different starting positions converge to the same intermediate state.",
       "algorithms": [
         { "label": "Main", "moves": "R U2 R' U' R U R'", "notes": "" },
-        { "label": "Alt",  "moves": "F' U2 F U F' U' F", "notes": "Mirror (use when approaching from F side)" }
+        { "label": "Alt",  "moves": "F' U2 F U F' U' F", "notes": "Mirror — use when approaching from F side" }
       ]
     },
     {
       "id": "f2l-06",
-      "name": "Both in top — white right, edge correct",
+      "name": "Both in top — white right, edge unflipped",
       "category": "both-in-top",
+      "subgroup": "white-side",
       "slot": "FR",
       "setup": "R U' R'",
-      "recognition": "Corner is in the U layer with white facing the R face. Edge is in the top layer directly above the slot, correctly oriented. One trigger inserts the corner; the edge follows.",
+      "recognition": "FIND: Find the corner with white facing RIGHT (toward the R face, visible from the right side).\nWHITE: White sticker faces the R face. The non-white colors of the corner face U and F.\nEDGE: Edge is in the top layer with non-white colors facing sideways (toward F and R), not up. Edge is NOT flipped. If the edge is flipped, you have f2l-09.\nCONFIRM: Corner white-right + edge unflipped above FR = f2l-06. Single trigger solves it.",
       "algorithms": [
-        { "label": "Main", "moves": "U R U' R'", "notes": "AUF + trigger" }
+        { "label": "Main", "moves": "U R U' R'", "notes": "AUF + single trigger" }
       ]
     },
     {
       "id": "f2l-07",
-      "name": "Both in top — white front, edge correct",
+      "name": "Both in top — white front, edge unflipped",
       "category": "both-in-top",
+      "subgroup": "white-side",
       "slot": "FR",
       "setup": "F' U F",
-      "recognition": "Corner is in the U layer with white facing the F face. Edge is in the top layer, correctly oriented. A single F trigger handles the insertion.",
+      "recognition": "FIND: Find the corner with white facing FRONT (toward the F face, visible from the front).\nWHITE: White sticker faces F. The non-white colors face U and R.\nEDGE: Edge in top layer, non-white colors facing sideways. Not flipped. If flipped, you have f2l-10.\nCONFIRM: Corner white-front + edge unflipped = f2l-07. Mirror of f2l-06.",
       "algorithms": [
         { "label": "Main", "moves": "U' F' U F", "notes": "" }
       ]
@@ -84,9 +87,10 @@
       "id": "f2l-08",
       "name": "Both in top — white up, edge flipped",
       "category": "both-in-top",
+      "subgroup": "white-up",
       "slot": "FR",
       "setup": "R U R' U2 R U' R'",
-      "recognition": "Corner in U layer, white facing UP. Edge is in the top layer but flipped — its non-white color faces the wrong direction. The algorithm pairs them by exploiting the flip.",
+      "recognition": "FIND: Find the corner with white facing UP — same starting point as f2l-05.\nWHITE: White sticker on top, identical to f2l-05 so far.\nEDGE: Find the matching edge. Now look at its top-layer position — one of the edge's non-white colors is facing UP (toward U face) instead of sideways. This is the flip. Practical test: if you can see your slot color on the top face of the edge sticker, the edge is flipped.\nCONFIRM: Corner white-up + edge FLIPPED = f2l-08. One more move than f2l-05.",
       "algorithms": [
         { "label": "Main", "moves": "R U R' U2 R U' R'", "notes": "Self-inverse sequence" },
         { "label": "Alt",  "moves": "F' U' F U2 F' U F", "notes": "Mirror" }
@@ -96,10 +100,11 @@
       "id": "f2l-09",
       "name": "Both in top — white right, edge flipped",
       "category": "both-in-top",
+      "subgroup": "white-side",
       "slot": "FR",
       "setup": "R U R' U' R U2 R' U",
-      "recognition": "Corner in U layer, white facing the R face. Edge is in the top layer but flipped. The longer sequence sets up a pair before inserting.",
-      "shared_algorithm_note": "Same algorithm as f2l-24. Different starting positions converge to the same intermediate state.",
+      "recognition": "FIND: Find the corner with white facing RIGHT.\nWHITE: White sticker faces R, same as f2l-06 so far.\nEDGE: Find the matching edge in the top layer — one of its non-white colors faces UP (toward U face). The edge is flipped. If the edge were not flipped, you would have f2l-06.\nCONFIRM: Corner white-right + edge FLIPPED = f2l-09. Longer algorithm needed to pair correctly.",
+      "shared_algorithm_note": "Same algorithm as f2l-24 (corner-in-slot). Different starting positions converge to the same intermediate state.",
       "algorithms": [
         { "label": "Main", "moves": "U' R U2 R' U R U' R'", "notes": "" }
       ]
@@ -108,20 +113,22 @@
       "id": "f2l-10",
       "name": "Both in top — white front, edge flipped",
       "category": "both-in-top",
+      "subgroup": "white-side",
       "slot": "FR",
       "setup": "F' U' F U F' U2 F U'",
-      "recognition": "Corner in U layer, white facing the F face. Edge is in the top layer, flipped. Setup moves bring the pieces into pairing position.",
+      "recognition": "FIND: Find the corner with white facing FRONT.\nWHITE: White sticker faces F, same as f2l-07 so far.\nEDGE: One of the edge's non-white colors faces UP. The edge is flipped. If unflipped, that's f2l-07.\nCONFIRM: Corner white-front + edge FLIPPED = f2l-10. Mirror of f2l-09.",
       "algorithms": [
         { "label": "Main", "moves": "U F' U2 F U' F' U F", "notes": "" }
       ]
     },
     {
       "id": "f2l-11",
-      "name": "Both in top — pair above wrong slot",
+      "name": "Both in top — white up, pair at wrong slot",
       "category": "both-in-top",
+      "subgroup": "white-up",
       "slot": "FR",
       "setup": "R U R' U' R U2 R' U'",
-      "recognition": "Corner and edge are above a slot that is not the FR slot. AUF aligns the pair over the correct slot before inserting. The pieces are correctly oriented relative to each other.",
+      "recognition": "FIND: Corner white up, edge unflipped — looks like f2l-05 at first.\nWHITE: White on top.\nEDGE: Edge is in the top layer, unflipped.\nCONFIRM: Check which slot the pair is above. If the non-white color on the corner's R face matches the center color of the face it's above — but it's NOT the FR slot — AUF first to bring it over FR, then execute. The AUF changes the algorithm.",
       "algorithms": [
         { "label": "Main", "moves": "U R U2 R' U R U' R'", "notes": "" }
       ]
@@ -130,10 +137,11 @@
       "id": "f2l-12",
       "name": "Both in top — white right, edge adjacent",
       "category": "both-in-top",
+      "subgroup": "white-side",
       "slot": "FR",
       "setup": "R U R' U' R U R'",
-      "recognition": "Corner in U layer, white facing R. Edge is in the top layer one position away from the corner. This 7-move sequence pairs and inserts.",
-      "shared_algorithm_note": "Same algorithm as f2l-20 and f2l-31. These cases share an algorithm because different starting positions converge to the same intermediate cube state mid-sequence.",
+      "recognition": "FIND: Corner white facing right. Edge is in the top layer one position clockwise from the corner.\nWHITE: White faces R.\nEDGE: Edge's non-white colors face sideways but the edge is not directly above the FR slot — it's offset by one U move. The pieces are close but not paired.\nCONFIRM: Corner white-right + edge one position away (not directly above slot) = f2l-12.",
+      "shared_algorithm_note": "Same algorithm as f2l-20 and f2l-31. Different starting positions converge to the same intermediate state mid-sequence.",
       "algorithms": [
         { "label": "Main", "moves": "R U' R' U R U' R'", "notes": "" }
       ]
@@ -142,10 +150,11 @@
       "id": "f2l-13",
       "name": "Both in top — white front, edge adjacent",
       "category": "both-in-top",
+      "subgroup": "white-side",
       "slot": "FR",
       "setup": "F' U' F U F' U' F",
-      "recognition": "Corner in U layer, white facing F. Edge is in the top layer one position away. Mirror of f2l-12.",
-      "shared_algorithm_note": "Same algorithm as f2l-32. Mirror pair of f2l-12 and f2l-20.",
+      "recognition": "FIND: Corner white facing front. Edge is one position counter-clockwise from the corner in the top layer.\nWHITE: White faces F.\nEDGE: Non-white colors face sideways, edge offset from the slot. Mirror of f2l-12.\nCONFIRM: Corner white-front + edge adjacent = f2l-13.",
+      "shared_algorithm_note": "Same algorithm as f2l-32. Mirror pair with f2l-12.",
       "algorithms": [
         { "label": "Main", "moves": "F' U F U' F' U F", "notes": "" }
       ]
@@ -154,9 +163,10 @@
       "id": "f2l-14",
       "name": "Both in top — white up, edge at back",
       "category": "both-in-top",
+      "subgroup": "white-up",
       "slot": "FR",
       "setup": "R U R' U2 R U2 R' U'",
-      "recognition": "Corner white facing up. Edge is at the back of the U layer, correctly oriented. Requires two setup U moves before the pairing trigger.",
+      "recognition": "FIND: Corner white up. Now look for the edge — it is at the back of the U layer (UB position), unflipped.\nWHITE: White on top.\nEDGE: Edge is at the back of the top layer, non-white colors facing sideways. Two U moves away from direct alignment.\nCONFIRM: Corner white-up + edge at back, unflipped = f2l-14.",
       "algorithms": [
         { "label": "Main", "moves": "U' R U2 R' U2 R U' R'", "notes": "" }
       ]
@@ -165,9 +175,10 @@
       "id": "f2l-15",
       "name": "Both in top — white up, edge flipped diagonal",
       "category": "both-in-top",
+      "subgroup": "white-up",
       "slot": "FR",
       "setup": "F' U' F U2 R U R' U'",
-      "recognition": "Corner white facing up. Edge is flipped and positioned diagonally. The mixed R/F trigger sequence handles the awkward relative position.",
+      "recognition": "FIND: Corner white up. Edge is flipped AND positioned diagonally away from the corner.\nWHITE: White on top.\nEDGE: One non-white edge color faces UP. Edge is on the opposite side of the U layer from the corner (diagonal position).\nCONFIRM: Corner white-up + edge flipped + diagonal = f2l-15. Requires a mixed R/F trigger sequence.",
       "algorithms": [
         { "label": "Main", "moves": "U R U' R' U2 F' U F", "notes": "" }
       ]
@@ -176,53 +187,57 @@
       "id": "f2l-16",
       "name": "Both in top — white up, awkward diagonal",
       "category": "both-in-top",
+      "subgroup": "awkward",
       "slot": "FR",
       "setup": "R U R' U2 R U2 R'",
-      "recognition": "Corner white up, edge on the opposite side of the U layer. Both pieces need setup moves before they can pair.",
+      "recognition": "FIND: Corner white up. Edge is on the opposite side of the top layer, unflipped.\nWHITE: White on top.\nEDGE: Unflipped, but the corner and edge are on opposite sides — maximum distance apart in the top layer.\nCONFIRM: Corner white-up + edge directly opposite (diagonal), unflipped = f2l-16.",
       "algorithms": [
         { "label": "Main", "moves": "R U2 R' U2 R U' R'", "notes": "" }
       ]
     },
     {
       "id": "f2l-17",
-      "name": "Both in top — corner front-right, edge front-left",
+      "name": "Both in top — corner FR, edge FL",
       "category": "both-in-top",
+      "subgroup": "awkward",
       "slot": "FR",
       "setup": "R U' R' U F' U F",
-      "recognition": "Corner is above the FR slot. Edge is above the FL slot. They need to be brought together before insertion.",
+      "recognition": "FIND: Corner is above the FR slot. Edge is above the FL slot (front-left) — they are not directly adjacent.\nWHITE: Can be any orientation — the key identifier here is the POSITIONS, not just the white sticker.\nEDGE: Edge is at FL position, one U away from adjacent.\nCONFIRM: Corner above FR + edge above FL = f2l-17.",
       "algorithms": [
         { "label": "Main", "moves": "F' U' F U' R U R'", "notes": "" }
       ]
     },
     {
       "id": "f2l-18",
-      "name": "Both in top — corner right-back, edge front-right",
+      "name": "Both in top — corner BR, edge FR",
       "category": "both-in-top",
+      "subgroup": "awkward",
       "slot": "FR",
       "setup": "F' U' F U R U' R'",
-      "recognition": "Corner is above the BR slot. Edge is above the FR slot. Longer pairing path than the standard cases.",
+      "recognition": "FIND: Corner is above the BR slot (back-right). Edge is above the FR slot.\nWHITE: Position-based identification — check where the corner sits above the cube.\nEDGE: Edge is at FR, corner is at BR.\nCONFIRM: Corner above BR + edge above FR = f2l-18. Longer pairing path.",
       "algorithms": [
         { "label": "Main", "moves": "R U' R' U' F' U F", "notes": "" }
       ]
     },
     {
       "id": "f2l-19",
-      "name": "Both in top — white up, edge at back-left",
+      "name": "Both in top — white up, edge far left",
       "category": "both-in-top",
+      "subgroup": "awkward",
       "slot": "FR",
       "setup": "R U R' U2 F' U' F U'",
-      "recognition": "Corner white up above FR. Edge is at the back-left of the top layer. Multiple setup moves required before the R/F pairing sequence.",
+      "recognition": "FIND: Corner white up above FR slot. Edge is on the far left of the top layer (UL or UB-L position), unflipped.\nWHITE: White on top above FR.\nEDGE: Unflipped, but needs multiple U moves to align — maximum angular distance from the corner.\nCONFIRM: Corner white-up above FR + edge at far left = f2l-19.",
       "algorithms": [
         { "label": "Main", "moves": "U F' U F U2 R U' R'", "notes": "" }
       ]
     },
     {
       "id": "f2l-20",
-      "name": "Corner in slot correct — edge in top correct",
+      "name": "Corner in slot correct — edge in top, unflipped",
       "category": "corner-in-slot",
       "slot": "FR",
       "setup": "R U R' U' R U R'",
-      "recognition": "Corner is already correctly placed in the FR slot (white on bottom). Edge is in the top layer and correctly oriented. Extract the corner, unite with edge, reinsert.",
+      "recognition": "FIND: Look at the FR slot — is the corner inside it with white on the bottom (D face)?\nWHITE: White is HIDDEN inside the slot on the D face. You cannot see it from the top.\nEDGE: Find the matching edge in the top layer. Its non-white colors should face sideways (toward F and R faces), not up. If one color faces up, the edge is flipped — see f2l-21.\nCONFIRM: Corner in slot white-down + edge unflipped in top = f2l-20.",
       "shared_algorithm_note": "Same algorithm as f2l-12 and f2l-31. Different starting positions converge to the same intermediate state.",
       "algorithms": [
         { "label": "Main", "moves": "R U' R' U R U' R'", "notes": "Extract corner, pair with edge, reinsert" }
@@ -230,45 +245,45 @@
     },
     {
       "id": "f2l-21",
-      "name": "Corner in slot correct — edge in top flipped",
+      "name": "Corner in slot correct — edge in top, flipped",
       "category": "corner-in-slot",
       "slot": "FR",
       "setup": "R U' R' U R U' R'",
-      "recognition": "Corner is correctly placed in the slot. Edge is in the top layer but flipped. The extraction sequence simultaneously fixes the edge flip.",
+      "recognition": "FIND: Corner is in the FR slot with white hidden on D face — same as f2l-20 to start.\nWHITE: White hidden in slot.\nEDGE: Find the matching edge in the top layer — one of its non-white colors faces UP. The edge is flipped. If unflipped, that is f2l-20.\nCONFIRM: Corner in slot white-down + edge FLIPPED in top = f2l-21.",
       "algorithms": [
         { "label": "Main", "moves": "R U R' U' R U R'", "notes": "" }
       ]
     },
     {
       "id": "f2l-22",
-      "name": "Corner in slot wrong orientation — edge correct",
+      "name": "Corner in slot misoriented — edge in top, unflipped",
       "category": "corner-in-slot",
       "slot": "FR",
       "setup": "R U R' U' R U2 R'",
-      "recognition": "Corner is in the FR slot but misoriented (white sticker not on bottom). Edge is in the top layer correctly oriented. The longer sequence extracts, reorients, and reinserts the corner.",
+      "recognition": "FIND: Look at the FR slot. Is there a corner in it, but white is NOT on the bottom — it's on the front or right face instead?\nWHITE: White sticker is visible on the F or R face of the slot (not on D). The corner is in the wrong orientation.\nEDGE: Find the matching edge in the top layer — non-white colors facing sideways, not up. Unflipped.\nCONFIRM: Corner in slot misoriented + edge unflipped in top = f2l-22.",
       "algorithms": [
         { "label": "Main", "moves": "R U2 R' U R U' R'", "notes": "" }
       ]
     },
     {
       "id": "f2l-23",
-      "name": "Corner in slot wrong orientation — edge flipped",
+      "name": "Corner in slot misoriented — edge in top, flipped",
       "category": "corner-in-slot",
       "slot": "FR",
       "setup": "R U' R' U R U2 R'",
-      "recognition": "Corner in slot, wrongly oriented. Edge in top layer, flipped. Both pieces need correction — the algorithm handles both in one sequence.",
-      "shared_algorithm_note": "Same algorithm as f2l-05. Different starting positions (different category) converge to the same intermediate state.",
+      "recognition": "FIND: Corner in FR slot, white visible on F or R face (misoriented).\nWHITE: White faces F or R — visible from the side, not on D.\nEDGE: Matching edge in top layer, one color facing UP. Flipped. If unflipped, that is f2l-22.\nCONFIRM: Corner in slot misoriented + edge FLIPPED in top = f2l-23.",
+      "shared_algorithm_note": "Same algorithm as f2l-05. Different starting positions converge to the same intermediate state.",
       "algorithms": [
         { "label": "Main", "moves": "R U2 R' U' R U R'", "notes": "" }
       ]
     },
     {
       "id": "f2l-24",
-      "name": "Corner in slot — edge at back-right",
+      "name": "Corner in slot — edge at back-right, unflipped",
       "category": "corner-in-slot",
       "slot": "FR",
       "setup": "R U R' U' R U2 R' U'",
-      "recognition": "Corner is in the slot (any orientation). Edge is in the top layer at the back-right position. Requires AUF before extracting the corner.",
+      "recognition": "FIND: Corner is in the FR slot (any orientation). Edge is in the top layer at the UR position (back-right of the U layer).\nWHITE: Check the slot — corner is in there.\nEDGE: Edge is at UR (back-right top position), non-white colors sideways, not up. Unflipped.\nCONFIRM: Corner in slot + edge at UR, unflipped = f2l-24. AUF before the trigger.",
       "shared_algorithm_note": "Same algorithm as f2l-09. Different starting positions converge to the same intermediate state.",
       "algorithms": [
         { "label": "Main", "moves": "U R U2 R' U R U' R'", "notes": "" }
@@ -276,66 +291,66 @@
     },
     {
       "id": "f2l-25",
-      "name": "Corner in slot — edge at front-left",
+      "name": "Corner in slot — edge at front-left, unflipped",
       "category": "corner-in-slot",
       "slot": "FR",
       "setup": "F' U' F U F' U2 F U'",
-      "recognition": "Corner is in the slot. Edge is in the top layer at the front-left position. Mirror of f2l-24.",
+      "recognition": "FIND: Corner in FR slot. Edge is at the UL position (front-left of the top layer).\nWHITE: Corner in slot.\nEDGE: Edge at UL (front-left top), unflipped. Mirror of f2l-24.\nCONFIRM: Corner in slot + edge at UL, unflipped = f2l-25.",
       "algorithms": [
         { "label": "Main", "moves": "U' F' U2 F U' F' U F", "notes": "" }
       ]
     },
     {
       "id": "f2l-26",
-      "name": "Corner in slot — edge back-right, pair with U2",
+      "name": "Corner in slot — edge at back-right, needs U2",
       "category": "corner-in-slot",
       "slot": "FR",
       "setup": "R U' R' U R U2 R' U'",
-      "recognition": "Corner in slot. Edge at back-right but requiring U2 to align after extraction. Variant of f2l-24 with a different AUF.",
+      "recognition": "FIND: Corner in FR slot. Edge is in the top layer at UR position.\nWHITE: Corner in slot.\nEDGE: Edge at UR, unflipped — same position as f2l-24. The difference is the corner's orientation in the slot changes the algorithm's AUF. If the algorithm needs U at the start and U2 mid-sequence, this is f2l-26; if it needs U at the start only, it's f2l-24.\nCONFIRM: Variant of f2l-24 with different corner orientation.",
       "algorithms": [
         { "label": "Main", "moves": "U R U2 R' U' R U R'", "notes": "" }
       ]
     },
     {
       "id": "f2l-27",
-      "name": "Corner in slot — edge front-left, pair with U2",
+      "name": "Corner in slot — edge at front-left, needs U2",
       "category": "corner-in-slot",
       "slot": "FR",
       "setup": "F' U F U' F' U2 F U'",
-      "recognition": "Corner in slot. Edge at front-left position requiring extra U alignment. Mirror of f2l-26.",
+      "recognition": "FIND: Corner in FR slot. Edge is at UL (front-left top layer).\nWHITE: Corner in slot.\nEDGE: Edge at UL, unflipped. Mirror of f2l-26.\nCONFIRM: Corner in slot + edge at UL, requires U2 mid-sequence = f2l-27.",
       "algorithms": [
         { "label": "Main", "moves": "U' F' U2 F U F' U' F", "notes": "" }
       ]
     },
     {
       "id": "f2l-28",
-      "name": "Corner in top — edge in slot correct",
+      "name": "Corner in top — edge in slot, correct",
       "category": "corner-in-top",
       "slot": "FR",
       "setup": "R U R'",
-      "recognition": "Corner is free in the U layer. Edge is already in the correct position in the middle layer, correctly oriented. Only 3 moves needed — just insert the corner.",
+      "recognition": "FIND: Check the FR middle slot first. Is the edge already there? Look at the sticker on the F face of the slot — it should match the F center color. Look at the R face of the slot — should match R center.\nEDGE: Edge is in the correct position AND correctly oriented — both colors match their face centers.\nCONFIRM: Now find the corner anywhere in the top layer. This is the fastest F2L case: only 3 moves. The AUF is built into the algorithm for any corner position.",
       "algorithms": [
-        { "label": "Main", "moves": "R U' R'", "notes": "3-move case — the fastest F2L insertion" }
+        { "label": "Main", "moves": "R U' R'", "notes": "Fastest F2L case — 3 moves" }
       ]
     },
     {
       "id": "f2l-29",
-      "name": "Corner in top — edge in slot flipped",
+      "name": "Corner in top — edge in slot, flipped",
       "category": "corner-in-top",
       "slot": "FR",
       "setup": "F' U' F",
-      "recognition": "Corner is free in the U layer. Edge is in the correct position but flipped. A single F trigger fixes the edge while inserting the corner.",
+      "recognition": "FIND: Check the FR middle slot. Is the edge in it, but the sticker on the F face does NOT match the F center? Instead, the R-colored sticker is on the F face, and the F-colored sticker is on the R face — the edge is flipped.\nEDGE: In the correct slot position but wrong orientation — colors are swapped between F and R faces.\nCONFIRM: Edge in slot flipped + corner anywhere in top = f2l-29. Only 3 moves, mirror of f2l-28.",
       "algorithms": [
-        { "label": "Main", "moves": "F' U F", "notes": "3-move case" }
+        { "label": "Main", "moves": "F' U F", "notes": "3-move case — edge flip correction + insert" }
       ]
     },
     {
       "id": "f2l-30",
-      "name": "Corner in top — edge in wrong slot",
+      "name": "Corner in top — edge in adjacent wrong slot",
       "category": "corner-in-top",
       "slot": "FR",
       "setup": "F' U' F U R U' R' U'",
-      "recognition": "Corner is free in the top layer. Edge is in a middle slot that is not the FR slot, correctly oriented. The algorithm extracts the edge while inserting the corner.",
+      "recognition": "FIND: Check the FR slot — is it empty? Now check the adjacent slots (FL or BR). Is the matching edge in one of them, correctly oriented (colors matching their face centers)?\nEDGE: Edge is in a middle slot that is NOT the FR slot, but is correctly oriented within that wrong slot.\nCONFIRM: Corner free in top + edge in wrong slot (oriented correctly) = f2l-30.",
       "algorithms": [
         { "label": "Main", "moves": "U R U' R' U' F' U F", "notes": "" }
       ]
@@ -346,7 +361,7 @@
       "category": "corner-in-top",
       "slot": "FR",
       "setup": "R U R' U' R U R'",
-      "recognition": "Corner in top layer, white facing the R face. Edge is in an adjacent wrong slot. The trigger extracts the edge and pairs it simultaneously.",
+      "recognition": "FIND: Corner is in the top layer with white facing RIGHT. Check middle slots — edge is in one of them but not FR.\nWHITE: White sticker faces the R face on the corner.\nEDGE: In a wrong middle slot.\nCONFIRM: Corner white-right in top + edge in adjacent wrong slot = f2l-31.",
       "shared_algorithm_note": "Same algorithm as f2l-12 and f2l-20. Different starting positions converge to the same intermediate state.",
       "algorithms": [
         { "label": "Main", "moves": "R U' R' U R U' R'", "notes": "" }
@@ -358,41 +373,41 @@
       "category": "corner-in-top",
       "slot": "FR",
       "setup": "F' U' F U F' U' F",
-      "recognition": "Corner in top layer, white facing the F face. Edge in a wrong slot. Mirror of f2l-31.",
-      "shared_algorithm_note": "Same algorithm as f2l-13. Mirror pair of f2l-31.",
+      "recognition": "FIND: Corner in top layer with white facing FRONT. Edge is in a wrong middle slot.\nWHITE: White faces F.\nEDGE: In an adjacent wrong slot. Mirror of f2l-31.\nCONFIRM: Corner white-front in top + edge in wrong slot = f2l-32.",
+      "shared_algorithm_note": "Same algorithm as f2l-13. Mirror pair with f2l-31.",
       "algorithms": [
         { "label": "Main", "moves": "F' U F U' F' U F", "notes": "" }
       ]
     },
     {
       "id": "f2l-33",
-      "name": "Corner in top — edge in wrong slot flipped",
+      "name": "Corner in top — edge in wrong slot, flipped",
       "category": "corner-in-top",
       "slot": "FR",
       "setup": "R U R' U R U' R' U R U2 R'",
-      "recognition": "Corner free in the top layer. Edge is in a wrong slot AND flipped. The longer 11-move sequence handles extraction, flip correction, and insertion in one go.",
+      "recognition": "FIND: Corner is in the top layer. Check adjacent middle slots — edge is in one of them, but the sticker on the face does NOT match the face center (edge is flipped within the wrong slot).\nEDGE: In wrong slot AND flipped — both position and orientation are incorrect.\nCONFIRM: Corner in top + edge in wrong slot + flipped = f2l-33. The 11-move algorithm handles extraction, flip, and insertion. Alternatively, extract the edge first with a 4-move trigger, then solve the resulting simpler case.",
       "algorithms": [
-        { "label": "Main", "moves": "R U2 R' U' R U R' U' R U' R'", "notes": "Consider extracting edge first as a two-step alternative" }
+        { "label": "Main", "moves": "R U2 R' U' R U R' U' R U' R'", "notes": "Consider: extract edge first, then solve as corner-in-top case" }
       ]
     },
     {
       "id": "f2l-34",
-      "name": "Corner in top — edge in back-right slot",
+      "name": "Corner in top — edge in BR slot",
       "category": "corner-in-top",
       "slot": "FR",
       "setup": "R U R' U' R U' R' U",
-      "recognition": "Corner in top layer. Edge is in the back-right (BR) middle slot. AUF first, then extract and insert.",
+      "recognition": "FIND: Corner is free in the top layer. Check the back-right (BR) middle slot — is the matching edge there?\nEDGE: Edge is in the BR slot (not FR). AUF first to bring the corner to the right position, then extract edge and insert pair.\nCONFIRM: Corner in top + edge in BR slot = f2l-34.",
       "algorithms": [
         { "label": "Main", "moves": "U' R U R' U R U' R'", "notes": "" }
       ]
     },
     {
       "id": "f2l-35",
-      "name": "Corner in top — edge in back-right slot flipped",
+      "name": "Corner in top — edge in BR slot, flipped",
       "category": "corner-in-top",
       "slot": "FR",
       "setup": "R U R' U2 R U R'",
-      "recognition": "Corner in top layer. Edge is in the back-right slot but flipped. Shorter than f2l-33 because the slot position is more accessible.",
+      "recognition": "FIND: Corner in top layer. Check the BR middle slot — edge is there, but the sticker on the R face does NOT match the R center (it's flipped within the BR slot).\nEDGE: In BR slot but flipped — the R-face sticker has the back color, not R color.\nCONFIRM: Corner in top + edge in BR slot + flipped = f2l-35.",
       "algorithms": [
         { "label": "Main", "moves": "R U' R' U2 R U' R'", "notes": "" }
       ]
@@ -403,7 +418,7 @@
       "category": "advanced",
       "slot": "FR",
       "setup": "R U R' U R U' R' U R U R'",
-      "recognition": "Corner is correctly placed in the FR slot. Edge is in a different middle slot (not FR). The 11-move sequence extracts the corner to pair with the edge, then reinserts both.",
+      "recognition": "FIND: The FR slot looks solved — corner is in with white on the bottom. But the FR edge is missing from the slot. Instead, find the matching edge in an adjacent middle slot (FL or BR).\nWHITE: Corner correctly placed, white on D.\nEDGE: In a different middle slot (not FR). Both pieces are in middle layer slots but not together.\nCONFIRM: Corner in correct slot + edge in adjacent wrong slot = f2l-36.",
       "algorithms": [
         { "label": "Main", "moves": "R U' R' U' R U R' U' R U' R'", "notes": "" }
       ]
@@ -414,7 +429,7 @@
       "category": "advanced",
       "slot": "FR",
       "setup": "R U R' U' R U R' U' R U' R'",
-      "recognition": "Corner is in the FR slot but misoriented (white not on bottom). Edge is in a different middle slot. Both pieces need extracting and correcting.",
+      "recognition": "FIND: The FR slot has a corner in it, but white is NOT on the bottom — it's on the F or R face. AND the matching edge is in a different middle slot.\nWHITE: Visible on the F or R face of the slot — misoriented.\nEDGE: In an adjacent wrong slot. Both pieces need extracting and correcting.\nCONFIRM: Corner in slot misoriented + edge in adjacent wrong slot = f2l-37.",
       "algorithms": [
         { "label": "Main", "moves": "R U R' U R U' R' U R U' R'", "notes": "" }
       ]
@@ -425,9 +440,9 @@
       "category": "advanced",
       "slot": "FR",
       "setup": "R U R' U' R U2 R' U' R U R'",
-      "recognition": "Both corner and edge are in middle slots but neither is the correct FR slot. Requires extracting and relocating both pieces before pairing and inserting. The most complex standard F2L case.",
+      "recognition": "FIND: The FR slot is either empty or has the wrong pieces. Check all four middle slots — both the corner and edge are somewhere in the middle layer, but NOT in the FR slot.\nWHITE: Corner is in a middle slot, white not in the FR position.\nEDGE: Edge is in a different middle slot.\nCONFIRM: Both corner and edge in middle layer, neither in FR slot = f2l-38. The most complex standard case. If it looks close but not quite, verify which slots hold which pieces.",
       "algorithms": [
-        { "label": "Main", "moves": "R U' R' U R U2 R' U R U' R'", "notes": "Consider a two-step extraction approach for learning" }
+        { "label": "Main", "moves": "R U' R' U R U2 R' U R U' R'", "notes": "Consider extracting one piece at a time as an alternative" }
       ]
     }
   ]

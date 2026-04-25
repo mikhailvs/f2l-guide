@@ -11,13 +11,22 @@ const CATEGORIES = [
   { id: 'learned',        label: 'Learned' },
 ];
 
-// JS owns chip colors — CSS face-color rules removed (they were dead, overridden by inline style)
+const SUBGROUPS = {
+  'white-side':  'White facing right or front',
+  'white-up':    'White facing up',
+  'awkward':     'Awkward diagonals',
+};
+
+// JS owns chip colors — CSS face-color rules were removed (they were dead)
+// F and L use dark text: white on green = 3.39:1 (fails AA), white on orange = 3.05:1 (fails AA)
 const FACE_BG   = { U: '#FFD500', R: '#E03030', F: '#30A030', D: '#e8e8e8', L: '#E07820', B: '#3060E0' };
-// F and L use dark text for WCAG AA contrast (white on green = 3.39:1, white on orange = 3.05:1 — both fail)
 const FACE_TEXT = { U: '#000', R: '#fff', F: '#1a1a00', D: '#000', L: '#1a1a00', B: '#fff' };
 
 let allCases = [];
 let activeFilter = 'all';
+
+// Learning/Reference mode — persisted in sessionStorage
+let isLearningMode = sessionStorage.getItem('f2l-mode') !== 'reference';
 
 async function init() {
   try {
@@ -36,16 +45,17 @@ async function init() {
     return;
   }
 
+  renderModeToggle();
   renderFilterBar();
   renderProgressBar(allCases.length);
 
-  // Read hash once on page load for shareable URL support; no ongoing hashchange listener
+  // Read hash once on page load for shareable URL support
   const hash = location.hash.replace('#', '') || 'all';
   activeFilter = CATEGORIES.find(c => c.id === hash) ? hash : 'all';
+  applyMode();
   renderCases();
   updateFilterButtons();
 
-  // Wire reset button through the module (not inline onclick)
   const resetBtn = document.getElementById('reset-progress-btn');
   resetBtn?.addEventListener('click', () => {
     if (!window.confirm('Reset all progress?')) return;
@@ -54,6 +64,36 @@ async function init() {
     refreshLearnedCount();
     renderCases();
   });
+}
+
+// ── Mode toggle ───────────────────────────────────────────
+
+function renderModeToggle() {
+  const bar = document.querySelector('.filter-bar');
+  if (!bar) return;
+
+  const toggle = document.createElement('button');
+  toggle.id = 'mode-toggle';
+  toggle.className = 'mode-toggle-btn';
+  toggle.setAttribute('aria-pressed', String(isLearningMode));
+  toggle.setAttribute('aria-label', 'Toggle learning or reference mode');
+  toggle.textContent = isLearningMode ? '📖 Learning' : '⚡ Reference';
+
+  toggle.addEventListener('click', () => {
+    isLearningMode = !isLearningMode;
+    sessionStorage.setItem('f2l-mode', isLearningMode ? 'learning' : 'reference');
+    toggle.setAttribute('aria-pressed', String(isLearningMode));
+    toggle.textContent = isLearningMode ? '📖 Learning' : '⚡ Reference';
+    applyMode();
+    renderCases();
+  });
+
+  bar.parentElement.insertBefore(toggle, bar);
+}
+
+function applyMode() {
+  document.body.classList.toggle('mode-reference', !isLearningMode);
+  document.body.classList.toggle('mode-learning', isLearningMode);
 }
 
 // ── Filter bar ────────────────────────────────────────────
@@ -87,7 +127,6 @@ function renderFilterBar() {
 
 function setFilter(id) {
   activeFilter = id;
-  // Use replaceState for shareability without triggering hashchange (avoids double render)
   history.replaceState(null, '', id === 'all' ? location.pathname : '#' + id);
   renderCases();
   updateFilterButtons();
@@ -120,9 +159,24 @@ function renderCases() {
   }
 
   const fragment = document.createDocumentFragment();
-  visible.forEach(c => fragment.appendChild(buildCard(c, learned.has(c.id))));
-  grid.replaceChildren(fragment);
+  let lastSubgroup = null;
 
+  visible.forEach(c => {
+    // Render subgroup headings within both-in-top when not filtered to a single category
+    if (c.category === 'both-in-top' && c.subgroup && c.subgroup !== lastSubgroup) {
+      lastSubgroup = c.subgroup;
+      const heading = document.createElement('div');
+      heading.className = 'subgroup-heading';
+      heading.setAttribute('aria-label', `Subgroup: ${SUBGROUPS[c.subgroup] || c.subgroup}`);
+      heading.textContent = SUBGROUPS[c.subgroup] || c.subgroup;
+      fragment.appendChild(heading);
+    } else if (c.category !== 'both-in-top') {
+      lastSubgroup = null;
+    }
+    fragment.appendChild(buildCard(c, learned.has(c.id)));
+  });
+
+  grid.replaceChildren(fragment);
   observeViewers();
 }
 
@@ -134,10 +188,10 @@ function buildCard(c, isLearned) {
 
   const badgeClass = `badge-${c.category}`;
   const badgeLabel = CATEGORIES.find(cat => cat.id === c.category)?.label ?? c.category;
-
   const mainAlg = c.algorithms[0];
   const altAlg  = c.algorithms[1];
   const moveCount = mainAlg.moves.trim().split(/\s+/).length;
+  const recOpen = !isLearned; // open by default in learning mode, closed when learned
 
   card.innerHTML = `
     <div class="case-card-viewer">
@@ -185,14 +239,27 @@ function buildCard(c, isLearned) {
         <span class="shared-alg-icon" aria-hidden="true">⟳</span>${esc(c.shared_algorithm_note)}
       </div>` : ''}
 
-      <div>
-        <button class="recognition-toggle ${isLearned ? '' : 'open'}"
-                aria-expanded="${isLearned ? 'false' : 'true'}"
+      <div class="recognition-section">
+        <button class="recognition-toggle ${recOpen ? 'open' : ''}"
+                aria-expanded="${recOpen}"
                 aria-controls="rec-${c.id}">
           How to recognize this case
         </button>
-        <div class="recognition-text ${isLearned ? '' : 'open'}" id="rec-${c.id}" ${isLearned ? 'hidden' : ''}>
-          ${esc(c.recognition)}
+        <div class="recognition-text ${recOpen ? 'open' : ''}" id="rec-${c.id}" ${recOpen ? '' : 'hidden'}>
+          ${formatRecognition(c.recognition)}
+        </div>
+      </div>
+
+      <div class="setup-section">
+        <button class="setup-toggle" aria-expanded="false" aria-controls="setup-${c.id}">
+          Practice setup
+        </button>
+        <div class="setup-panel" id="setup-${c.id}" hidden>
+          <p class="setup-desc">Apply to a fully solved cube to reach this case state:</p>
+          <div class="setup-scramble">
+            <code>${esc(c.setup)}</code>
+            <button class="copy-btn" data-copy="${escAttr(c.setup)}" aria-label="Copy setup scramble">Copy</button>
+          </div>
         </div>
       </div>
 
@@ -215,6 +282,19 @@ function buildCard(c, isLearned) {
     toggleDisclosure(e.currentTarget, card.querySelector(`#alt-${c.id}`));
   });
 
+  card.querySelector('.setup-toggle')?.addEventListener('click', (e) => {
+    toggleDisclosure(e.currentTarget, card.querySelector(`#setup-${c.id}`));
+  });
+
+  card.querySelector('.copy-btn')?.addEventListener('click', (e) => {
+    const text = e.currentTarget.dataset.copy;
+    navigator.clipboard?.writeText(text).then(() => {
+      const btn = e.currentTarget;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+    });
+  });
+
   card.querySelector('.learned-btn')?.addEventListener('click', (e) => {
     const btn = e.currentTarget;
     const id = btn.dataset.id;
@@ -228,7 +308,7 @@ function buildCard(c, isLearned) {
     renderProgressBar(allCases.length);
     refreshLearnedCount();
 
-    // Recognition hint: collapse when learned, expand when unlearned
+    // Collapse recognition hint when learned, expand when unlearned
     const recToggle = card.querySelector('.recognition-toggle');
     const recPanel  = card.querySelector(`#rec-${id}`);
     if (recToggle && recPanel) {
@@ -247,6 +327,20 @@ function buildCard(c, isLearned) {
 function refreshLearnedCount() {
   const btn = document.querySelector('[data-filter="learned"] .count');
   if (btn) btn.textContent = getLearnedSet().size;
+}
+
+// ── Recognition hint formatter ────────────────────────────
+// Converts newline-delimited FIND/WHITE/EDGE/CONFIRM lines into labeled HTML
+
+function formatRecognition(text) {
+  if (!text) return '';
+  return text.split('\n').map(line => {
+    const match = line.match(/^(FIND|WHITE|EDGE|CONFIRM|CORNER|RESULT|CHECK):\s*(.*)/);
+    if (match) {
+      return `<div class="rec-line"><span class="rec-label">${esc(match[1])}</span><span class="rec-body">${esc(match[2])}</span></div>`;
+    }
+    return `<p class="rec-prose">${esc(line)}</p>`;
+  }).join('');
 }
 
 // ── Algorithm chip renderer ───────────────────────────────
