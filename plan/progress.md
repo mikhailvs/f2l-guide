@@ -1,53 +1,26 @@
 # Project Progress
 
-## Status: Phase 1 in progress
+## Status: Phase 6 (Polish) remaining
 
 | Phase | Status | Notes |
 |-------|--------|-------|
-| 1 — Scaffold & Design System | 🔄 in progress | |
-| 2 — Case Data | ⬜ not started | |
-| 3 — Cube Visualization | ⬜ not started | |
-| 4 — Case Browser | ⬜ not started | |
-| 5 — Learning Features | ⬜ not started | |
-| 6 — Polish | ⬜ not started | |
+| 1 — Scaffold & Design System | ✅ done | index, cases, about, 404, full CSS |
+| 2 — Case Data | ✅ done | all 41 cases in data/f2l-cases.json |
+| 3 — Cube Visualization | ✅ done | twisty-player lazy-init via IntersectionObserver |
+| 4 — Case Browser | ✅ done | filter bar, hash routing, alg chips, responsive grid |
+| 5 — Learning Features | ✅ done | progress bar, recognition hints, notation guide |
+| 6 — Polish | 🔄 in progress | mobile, a11y, alg accuracy pass |
 
-## Phase 1 Checklist
+GitHub Pages: https://mikhailvs.github.io/f2l-guide/ (main branch root)
 
-- [ ] `index.html` with header/nav/footer
-- [ ] `cases.html` shell
-- [ ] `about.html` shell
-- [ ] `styles/tokens.css`
-- [ ] `styles/base.css`
-- [ ] `styles/layout.css`
-- [ ] `styles/components.css`
-- [ ] `js/nav.js`
-- [ ] GitHub Pages enabled (main branch root)
+## Phase 6 Checklist
 
-## Phase 2 Checklist
-
-- [ ] `data/f2l-cases.json` — all 41 cases with schema from plan/03
-
-## Phase 3 Checklist
-
-- [ ] twisty-player CDN loaded
-- [ ] Lazy-init via IntersectionObserver in `js/viewer.js`
-- [ ] Each case card has working animated viewer
-
-## Phase 4 Checklist
-
-- [ ] Filter bar with category buttons
-- [ ] Hash routing (`cases.html#category`)
-- [ ] Algorithm chips with face colors
-- [ ] Case count label
-- [ ] Responsive grid (3→2→1 col)
-
-## Phase 5 Checklist
-
-- [ ] `js/progress.js` — localStorage tracking
-- [ ] Progress bar on cases page
-- [ ] Recognition hints per case (collapsible)
-- [ ] `about.html` notation guide complete
-- [ ] Home page hero + start-here section
+- [ ] Lighthouse a11y ≥ 90
+- [ ] Mobile 375px fully usable (filter bar horizontal scroll)
+- [ ] `prefers-reduced-motion` respected (already in base.css, verify twisty-player)
+- [ ] All 41 algs verified against SpeedSolving wiki
+- [ ] Touch targets ≥ 44px
+- [ ] Meta descriptions on all pages ✅ (done)
 
 ## Phase 6 Checklist
 
