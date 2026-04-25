@@ -13,15 +13,17 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <header class="site-header" role="banner">
   <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html" class="nav-logo">F2L<span>Guide</span></a>
-    <div class="nav-links" role="list">
-      <a href="index.html" role="listitem">Home</a>
-      <a href="cases.html" role="listitem">All Cases</a>
-      <a href="about.html" role="listitem">About F2L</a>
+    <div class="nav-links" id="nav-links-list">
+      <a href="index.html">Home</a>
+      <a href="cases.html">All Cases</a>
+      <a href="about.html">About F2L</a>
     </div>
-    <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-list">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <rect y="3" width="20" height="2" rx="1"/>
         <rect y="9" width="20" height="2" rx="1"/>
@@ -31,7 +33,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main-content">
   <div class="page">
     <div class="prose" style="max-width: 740px;">
 
@@ -170,9 +172,9 @@
           <a href="cases.html#both-in-top">17 cases →</a>
         </li>
         <li style="margin-bottom: var(--space-3); color: var(--text-muted);">
-          <strong style="color: var(--text-primary);">Edge in Top</strong> — Edge is in the top layer but the corner
-          needs to be freed from a slot first.
-          <a href="cases.html#edge-in-top">8 cases →</a>
+          <strong style="color: var(--text-primary);">Corner in Top</strong> — Corner is free in the top layer; edge
+          is already in a middle slot and needs to be paired.
+          <a href="cases.html#corner-in-top">8 cases →</a>
         </li>
         <li style="margin-bottom: var(--space-3); color: var(--text-muted);">
           <strong style="color: var(--text-primary);">Corner in Slot</strong> — Corner is already in a slot
@@ -209,7 +211,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <span>F2L Guide — CFOP Reference</span>
-    <span>Algorithms sourced from the SpeedSolving wiki</span>
+    <span>Algorithms drawn from standard CFOP practice, verified against SpeedSolving wiki conventions</span>
   </div>
 </footer>
 

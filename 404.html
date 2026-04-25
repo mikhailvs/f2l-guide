@@ -7,15 +7,32 @@
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟨</text></svg>">
 </head>
 <body>
-<header class="site-header">
-  <nav class="nav-inner">
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html" class="nav-logo">F2L<span>Guide</span></a>
+    <div class="nav-links" id="nav-links-list">
+      <a href="index.html">Home</a>
+      <a href="cases.html">All Cases</a>
+      <a href="about.html">About F2L</a>
+    </div>
+    <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-list">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <rect y="3" width="20" height="2" rx="1"/>
+        <rect y="9" width="20" height="2" rx="1"/>
+        <rect y="15" width="20" height="2" rx="1"/>
+      </svg>
+    </button>
   </nav>
 </header>
-<main>
+
+<main id="main-content">
   <div class="page" style="text-align:center; padding-top: var(--space-16);">
     <p style="font-size:4rem; margin-bottom: var(--space-4);">🟨</p>
     <h1 style="font-size: var(--text-3xl); margin-bottom: var(--space-4);">Page not found</h1>
@@ -23,5 +40,14 @@
     <a href="index.html" class="btn btn-primary">Go Home</a>
   </div>
 </main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>F2L Guide — CFOP Reference</span>
+    <span>Algorithms drawn from standard CFOP practice, verified against SpeedSolving wiki conventions</span>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
 </body>
 </html>

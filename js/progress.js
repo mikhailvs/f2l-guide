@@ -24,7 +24,16 @@ export function renderProgressBar(total) {
   if (!wrap) return;
   const count = getLearnedSet().size;
   const pct = total > 0 ? (count / total) * 100 : 0;
-  wrap.querySelector('.progress-bar-fill').style.width = pct + '%';
+
+  const track = wrap.querySelector('[role="progressbar"]');
+  if (track) {
+    track.setAttribute('aria-valuenow', String(count));
+    track.setAttribute('aria-valuemax', String(total));
+  }
+
+  const fill = wrap.querySelector('.progress-bar-fill');
+  if (fill) fill.style.width = pct + '%';
+
   const lbl = wrap.querySelector('.progress-label');
-  lbl.innerHTML = `<strong>${count}</strong> / ${total} learned`;
+  if (lbl) lbl.innerHTML = `<strong>${count}</strong> / ${total} learned`;
 }

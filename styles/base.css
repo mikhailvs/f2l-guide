@@ -1,3 +1,18 @@
+/* Skip link — off-screen until focused */
+.skip-link {
+  position: absolute;
+  top: -999px;
+  left: var(--space-4, 1rem);
+  padding: 0.5rem 1rem;
+  background: #FFD500;
+  color: #000;
+  font-weight: 700;
+  border-radius: 8px;
+  z-index: 9999;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0.5rem; }
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

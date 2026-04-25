@@ -47,11 +47,11 @@
   text-transform: uppercase;
 }
 
-.badge-easy         { background: rgba(52,211,153,0.15); color: #34d399; }
-.badge-corner-in-slot { background: rgba(251,146,60,0.15); color: #fb923c; }
-.badge-edge-in-top  { background: rgba(96,165,250,0.15); color: #60a5fa; }
-.badge-both-in-top  { background: rgba(167,139,250,0.15); color: #a78bfa; }
-.badge-advanced     { background: rgba(248,113,113,0.15); color: #f87171; }
+.badge-easy           { background: rgba(52,211,153,0.15);  color: #34d399; }
+.badge-corner-in-slot { background: rgba(251,146,60,0.15);  color: #fb923c; }
+.badge-corner-in-top  { background: rgba(96,165,250,0.15);  color: #60a5fa; }
+.badge-both-in-top    { background: rgba(167,139,250,0.15); color: #a78bfa; }
+.badge-advanced       { background: rgba(248,113,113,0.15); color: #f87171; }
 
 /* ── Filter bar ─────────────────────────────────────────── */
 
@@ -61,6 +61,13 @@
   gap: var(--space-2);
   flex-wrap: wrap;
   margin-bottom: var(--space-6);
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 10;
+  background: var(--bg-base);
+  padding: var(--space-3) var(--space-4);
+  margin-left: calc(var(--space-4) * -1);
+  margin-right: calc(var(--space-4) * -1);
 }
 
 .filter-btn {
@@ -74,7 +81,9 @@
   color: var(--text-muted);
   font-size: var(--text-sm);
   font-weight: 500;
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast);
   white-space: nowrap;
 }
 .filter-btn:hover {
@@ -91,6 +100,36 @@
   font-size: var(--text-xs);
   opacity: 0.7;
 }
+
+.filter-sep {
+  width: 1px;
+  height: 24px;
+  background: var(--border-strong);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.filter-btn-learned {
+  border-color: rgba(52, 211, 153, 0.25);
+}
+.filter-btn-learned:hover {
+  border-color: rgba(52, 211, 153, 0.5);
+  color: var(--success);
+}
+.filter-btn-learned.active {
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.4);
+  color: var(--success);
+}
+
+.reset-btn {
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+  padding: 0;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+.reset-btn:hover { color: var(--text-muted); }
 
 /* ── Progress bar ───────────────────────────────────────── */
 
@@ -183,18 +222,67 @@ twisty-player {
 }
 .case-id {
   font-size: var(--text-xs);
-  color: var(--text-subtle);
+  color: var(--text-subtle-plus);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
+.case-name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
 .case-alg-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--text-subtle);
+  color: var(--text-subtle-plus);
   margin-bottom: var(--space-1);
+}
+
+.move-count {
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.case-notes {
+  font-size: var(--text-xs);
+  color: var(--text-subtle-plus);
+  margin-top: var(--space-1);
+  line-height: 1.4;
+}
+
+.shared-alg-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  line-height: 1.4;
+}
+.shared-alg-icon {
+  flex-shrink: 0;
+  color: var(--accent-dim);
+}
+
+.case-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--space-2);
 }
 .case-alg-row {
   display: flex;
@@ -220,16 +308,13 @@ twisty-player {
   color: #000;
 }
 
-.move-U  { background: var(--face-U); }
-.move-R  { background: var(--face-R); color: #fff; }
-.move-F  { background: var(--face-F); color: #fff; }
-.move-D  { background: var(--face-D); }
-.move-L  { background: var(--face-L); color: #fff; }
-.move-B  { background: var(--face-B); color: #fff; }
+/* Face-specific colors are set by JS (FACE_BG / FACE_TEXT maps in cases.js).
+   These rules are intentionally absent — JS inline style owns the source of truth.
+   Removing them prevents silent drift when contrast values are updated. */
 
-/* Reduced opacity for primes/doubles to visually distinguish */
-.move[data-modifier="prime"] { opacity: 0.82; }
-.move[data-modifier="double"] { opacity: 0.65; }
+/* Modifier: use border instead of opacity so text contrast is preserved */
+.move[data-modifier="prime"]  { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.4); }
+.move[data-modifier="double"] { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.2); }
 
 /* ── Learned toggle ─────────────────────────────────────── */
 
@@ -244,7 +329,9 @@ twisty-player {
   color: var(--text-muted);
   font-size: var(--text-xs);
   font-weight: 600;
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast);
 }
 .learned-btn:hover {
   background: var(--bg-elevated);
@@ -275,9 +362,13 @@ twisty-player {
   transition: background var(--transition-fast), color var(--transition-fast);
   text-align: center;
 }
-.viewer-btn:hover {
+.viewer-btn:hover:not(:disabled) {
   background: var(--bg-hover);
   color: var(--text-primary);
+}
+.viewer-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 /* ── Recognition hint ───────────────────────────────────── */

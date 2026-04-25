@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>F2L Guide — Learn First Two Layers</title>
-  <meta name="description" content="A comprehensive guide to all 41 F2L cases for the CFOP Rubik's cube method. Animated 3D diagrams, algorithms, and progress tracking.">
+  <meta name="description" content="A comprehensive guide to all 38 F2L cases for the CFOP Rubik's cube method. Animated 3D diagrams, algorithms, and progress tracking.">
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
@@ -13,15 +13,17 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <header class="site-header" role="banner">
   <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html" class="nav-logo">F2L<span>Guide</span></a>
-    <div class="nav-links" role="list">
-      <a href="index.html" role="listitem">Home</a>
-      <a href="cases.html" role="listitem">All Cases</a>
-      <a href="about.html" role="listitem">About F2L</a>
+    <div class="nav-links" id="nav-links-list">
+      <a href="index.html">Home</a>
+      <a href="cases.html">All Cases</a>
+      <a href="about.html">About F2L</a>
     </div>
-    <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-list">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <rect y="3" width="20" height="2" rx="1"/>
         <rect y="9" width="20" height="2" rx="1"/>
@@ -31,7 +33,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main-content">
   <div class="page">
 
     <section class="hero">
@@ -49,7 +51,7 @@
 
     <div class="stats-strip" aria-label="Site statistics">
       <div class="stat">
-        <div class="stat-value">41</div>
+        <div class="stat-value">38</div>
         <div class="stat-label">F2L Cases</div>
       </div>
       <div class="stat">
@@ -109,7 +111,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <span>F2L Guide — CFOP Reference</span>
-    <span>Algorithms sourced from the SpeedSolving wiki</span>
+    <span>Algorithms drawn from standard CFOP practice, verified against SpeedSolving wiki conventions</span>
   </div>
 </footer>
 

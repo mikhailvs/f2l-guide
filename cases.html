@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All F2L Cases — F2L Guide</title>
-  <meta name="description" content="Browse all 41 F2L cases with animated 3D diagrams, algorithms, recognition hints, and progress tracking.">
+  <meta name="description" content="Browse all 38 F2L cases with animated 3D diagrams, algorithms, recognition hints, and progress tracking.">
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
@@ -14,15 +14,17 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <header class="site-header" role="banner">
-  <nav class="nav-inner" aria-label="Main navigation">
+  <nav class="nav-inner" aria-label="Main navigation" id="main-nav">
     <a href="index.html" class="nav-logo">F2L<span>Guide</span></a>
-    <div class="nav-links" role="list">
-      <a href="index.html" role="listitem">Home</a>
-      <a href="cases.html" role="listitem">All Cases</a>
-      <a href="about.html" role="listitem">About F2L</a>
+    <div class="nav-links" id="nav-links-list">
+      <a href="index.html">Home</a>
+      <a href="cases.html">All Cases</a>
+      <a href="about.html">About F2L</a>
     </div>
-    <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-list">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <rect y="3" width="20" height="2" rx="1"/>
         <rect y="9" width="20" height="2" rx="1"/>
@@ -32,41 +34,43 @@
   </nav>
 </header>
 
-<main>
+<main id="main-content">
   <div class="page-wide">
 
     <div style="margin-bottom: var(--space-6);">
       <h1 style="font-size: var(--text-2xl); letter-spacing: -0.03em; margin-bottom: var(--space-2);">All F2L Cases</h1>
       <p style="color: var(--text-muted); font-size: var(--text-sm);">
         All algorithms target the <strong style="color:var(--text-primary)">front-right (FR) slot</strong>.
-        White cross on bottom, yellow on top.
+        White cross on bottom, yellow on top. <a href="about.html">New to F2L? Start here →</a>
       </p>
     </div>
 
     <!-- Progress bar -->
     <div class="progress-bar-wrap" aria-label="Learning progress">
-      <div class="progress-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="41" aria-valuenow="0">
+      <div class="progress-bar-track"
+           role="progressbar"
+           aria-valuemin="0"
+           aria-valuemax="38"
+           aria-valuenow="0"
+           aria-label="Cases learned">
         <div class="progress-bar-fill" style="width: 0%"></div>
       </div>
-      <span class="progress-label"><strong>0</strong> / 41 learned</span>
-      <button
-        onclick="if(confirm('Reset all progress?')){localStorage.removeItem('f2l-learned');location.reload();}"
-        style="font-size:var(--text-xs);color:var(--text-subtle);padding:0;background:none;border:none;cursor:pointer;white-space:nowrap;"
-        aria-label="Reset all progress">
-        Reset
-      </button>
+      <span class="progress-label"><strong>0</strong> / 38 learned</span>
+      <button id="reset-progress-btn" class="reset-btn" aria-label="Reset all progress">Reset</button>
     </div>
 
     <!-- Filter bar -->
-    <div class="filter-bar" role="group" aria-label="Filter by category"></div>
+    <div class="filter-bar" role="group" aria-label="Filter cases by category"></div>
 
-    <!-- Case count -->
+    <!-- Case count + meta -->
     <div class="cases-meta">
-      <p class="cases-count">Showing <strong>41</strong> of 41 cases</p>
+      <p class="cases-count" role="status" aria-live="polite" aria-atomic="true">
+        Showing <strong>38</strong> of 38 cases
+      </p>
     </div>
 
     <!-- Case grid -->
-    <div class="cases-grid" role="list" aria-live="polite" aria-label="F2L cases"></div>
+    <div class="cases-grid" role="list" aria-label="F2L cases"></div>
 
   </div>
 </main>
@@ -74,7 +78,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <span>F2L Guide — CFOP Reference</span>
-    <span>Algorithms sourced from the SpeedSolving wiki</span>
+    <span>Algorithms drawn from standard CFOP practice, verified against SpeedSolving wiki conventions</span>
   </div>
 </footer>
 
