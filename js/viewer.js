@@ -34,16 +34,10 @@ function initPlayer(placeholder) {
     card.querySelectorAll('.viewer-btn[disabled]').forEach(btn => btn.removeAttribute('disabled'));
   }
 
-  // Catch WebGL failures (headless browsers, privacy modes, old GPUs) and
-  // replace the player with a text fallback showing the setup scramble.
+  // Catch WebGL failures (headless browsers, privacy modes, old hardware).
+  // Only the error event triggers the fallback — the timeout approach was removed
+  // because querySelector can't pierce nested shadow DOMs in twisty-player.
   player.addEventListener('error', () => showViewerFallback(player, setup, ariaLabel), { once: true });
-
-  // Delay check: if player hasn't rendered after 3s and is still empty, show fallback.
-  setTimeout(() => {
-    if (player.isConnected && !player.shadowRoot?.querySelector('canvas')) {
-      showViewerFallback(player, setup, ariaLabel);
-    }
-  }, 3000);
 }
 
 function showViewerFallback(player, setup, ariaLabel) {

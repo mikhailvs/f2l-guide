@@ -210,7 +210,7 @@ function buildCard(c, isLearned, displayNum) {
   const mainAlg = c.algorithms[0];
   const altAlg  = c.algorithms[1];
   const moveCount = mainAlg.moves.trim().split(/\s+/).length;
-  const recOpen = !isLearned; // open by default in learning mode, closed when learned
+  const recOpen = isLearningMode && !isLearned; // open in learning mode for unlearned cases only
 
   card.innerHTML = `
     <div class="case-card-viewer">
@@ -305,10 +305,13 @@ function buildCard(c, isLearned, displayNum) {
   });
 
   card.querySelector('.copy-btn')?.addEventListener('click', (e) => {
-    const text = e.currentTarget.dataset.copy;
+    const btn = e.currentTarget;
+    const text = btn.dataset.copy;
     navigator.clipboard?.writeText(text).then(() => {
-      const btn = e.currentTarget;
       btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+    }).catch(() => {
+      btn.textContent = 'Failed';
       setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
     });
   });

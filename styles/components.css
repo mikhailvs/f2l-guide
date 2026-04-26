@@ -22,9 +22,9 @@
 }
 .mode-toggle-btn:hover { background: var(--bg-elevated); color: var(--text-primary); }
 
-/* In reference mode, hide recognition text and setup scramble by default */
-body.mode-reference .recognition-text:not(.open) { display: none; }
-body.mode-reference .recognition-toggle { color: var(--text-subtle); }
+/* Reference mode: hide all recognition texts unless user explicitly opened one */
+body.mode-reference .recognition-text { display: none; }
+body.mode-reference .recognition-text.open { display: block; }
 
 /* ── Subgroup headings in cases grid ─────────────────────── */
 
