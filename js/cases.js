@@ -1,5 +1,5 @@
 import { getLearnedSet, setLearned, renderProgressBar, resetProgress } from './progress.js';
-import { observeViewers, wireViewerControls } from './viewer.js';
+import { observeViewers, wireViewerControls, getGlobalSpeed, setGlobalSpeed } from './viewer.js';
 
 const CATEGORIES = [
   { id: 'all',            label: 'All' },
@@ -49,6 +49,7 @@ async function init() {
   }
 
   renderModeToggle();
+  renderSpeedControl();
   renderFilterBar();
   renderProgressBar(allCases.length);
 
@@ -92,6 +93,50 @@ function renderModeToggle() {
   });
 
   bar.parentElement.insertBefore(toggle, bar);
+}
+
+// ── Speed control ─────────────────────────────────────────
+
+const SPEEDS = [
+  { label: '0.5×', value: 0.5 },
+  { label: '1×',   value: 1   },
+  { label: '2×',   value: 2   },
+  { label: '3×',   value: 3   },
+];
+
+function renderSpeedControl() {
+  const bar = document.querySelector('.filter-bar');
+  if (!bar) return;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'speed-control';
+  wrap.setAttribute('role', 'group');
+  wrap.setAttribute('aria-label', 'Playback speed');
+
+  const label = document.createElement('span');
+  label.className = 'speed-label';
+  label.textContent = 'Speed';
+  wrap.appendChild(label);
+
+  const current = getGlobalSpeed();
+  SPEEDS.forEach(({ label: lbl, value }) => {
+    const btn = document.createElement('button');
+    btn.className = 'speed-btn' + (value === current ? ' active' : '');
+    btn.textContent = lbl;
+    btn.dataset.speed = value;
+    btn.setAttribute('aria-pressed', String(value === current));
+    btn.addEventListener('click', () => {
+      setGlobalSpeed(value);
+      wrap.querySelectorAll('.speed-btn').forEach(b => {
+        const isActive = parseFloat(b.dataset.speed) === value;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', String(isActive));
+      });
+    });
+    wrap.appendChild(btn);
+  });
+
+  bar.parentElement.insertBefore(wrap, bar);
 }
 
 function applyMode() {
@@ -222,9 +267,14 @@ function buildCard(c, isLearned, displayNum) {
       </div>
     </div>
 
+    <div class="viewer-scrubber-wrap">
+      <input class="viewer-scrubber" type="range" min="0" max="100" value="0" step="0.5"
+             aria-label="Animation position" disabled>
+    </div>
+
     <div class="viewer-controls">
-      <button class="viewer-btn" data-action="play" aria-label="Play algorithm" disabled>▶ Play</button>
-      <button class="viewer-btn" data-action="reset" aria-label="Reset to case position" disabled>↺ Reset</button>
+      <button class="viewer-btn" data-action="play" aria-label="Play / pause algorithm" disabled>▶</button>
+      <button class="viewer-btn" data-action="reset" aria-label="Reset to case position" disabled>↺</button>
     </div>
 
     <div class="case-card-body">
