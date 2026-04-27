@@ -10,16 +10,24 @@ export function setGlobalSpeed(scale) {
   document.querySelectorAll('twisty-player').forEach(p => {
     p.setAttribute('tempo-scale', String(scale));
   });
-  // Update estimatedMax for all registered players (tempo-scale changes duration)
   for (const state of activePlayers.values()) {
     state.estimatedMax = state.baseDuration / scale;
   }
 }
 
+// ── Default camera ────────────────────────────────────────
+
+const DEFAULT_CAM_LAT = -30;
+const DEFAULT_CAM_LNG = 30;
+
+function resetCamera(player) {
+  player.setAttribute('camera-latitude',  String(DEFAULT_CAM_LAT));
+  player.setAttribute('camera-longitude', String(DEFAULT_CAM_LNG));
+}
+
 // ── Active player registry (for scrubber sync loop) ───────
 
-// player → { scrubber, baseDuration, estimatedMax }
-const activePlayers = new Map();
+const activePlayers = new Map(); // player → { scrubber, baseDuration, estimatedMax }
 let rafId = null;
 
 function startUpdateLoop() {
@@ -34,10 +42,8 @@ function startUpdateLoop() {
         const pct = state.estimatedMax > 0
           ? Math.min(100, (ts / state.estimatedMax) * 100)
           : 0;
-        // Only update if not being dragged (avoid fighting the user)
         if (document.activeElement !== state.scrubber) {
           state.scrubber.value = pct;
-          // Update the track fill gradient via CSS custom property
           state.scrubber.style.setProperty('--progress', `${pct}%`);
         }
       }
@@ -73,27 +79,25 @@ function initPlayer(placeholder) {
   player.setAttribute('hint-facelets', 'none');
   player.setAttribute('back-view', 'none');
   player.setAttribute('control-panel', 'none');
-  player.setAttribute('camera-latitude', '-30');
-  player.setAttribute('camera-longitude', '30');
-  player.setAttribute('background', 'none');               // transparent → card bg shows through
+  player.setAttribute('camera-latitude',  String(DEFAULT_CAM_LAT));
+  player.setAttribute('camera-longitude', String(DEFAULT_CAM_LNG));
+  player.setAttribute('background', 'none');
   player.setAttribute('tempo-scale', String(globalSpeed));
   player.setAttribute('role', 'img');
   if (ariaLabel) player.setAttribute('aria-label', ariaLabel);
 
   placeholder.replaceWith(player);
 
-  // Register player for scrubber sync
-  const baseDuration = moveCount * 1000; // ~1000ms per move at 1x
+  const baseDuration = moveCount * 1000;
   const estimatedMax = baseDuration / globalSpeed;
   activePlayers.set(player, { scrubber: null, baseDuration, estimatedMax });
   startUpdateLoop();
 
-  // Enable controls now that player exists
   const card = player.closest('.case-card');
   if (card) {
     card.querySelectorAll('.viewer-btn[disabled], .viewer-scrubber[disabled]')
         .forEach(el => el.removeAttribute('disabled'));
-    // Wire scrubber to this player
+
     const scrubber = card.querySelector('.viewer-scrubber');
     if (scrubber) {
       activePlayers.get(player).scrubber = scrubber;
@@ -102,14 +106,12 @@ function initPlayer(placeholder) {
         const pct = parseFloat(scrubber.value);
         player.timestamp = (pct / 100) * estimatedMax;
         scrubber.style.setProperty('--progress', `${pct}%`);
-        // Reset play button icon when scrubbing
         const playBtn = card.querySelector('[data-action="play"]');
         if (playBtn) playBtn.textContent = '▶';
       });
     }
   }
 
-  // Catch WebGL failures (headless, privacy modes, old hardware)
   player.addEventListener('error', () => showViewerFallback(player, setup, ariaLabel), { once: true });
 }
 
@@ -130,9 +132,10 @@ function showViewerFallback(player, setup, ariaLabel) {
 // ── Per-card viewer controls ──────────────────────────────
 
 export function wireViewerControls(card) {
-  const playBtn  = card.querySelector('[data-action="play"]');
-  const resetBtn = card.querySelector('[data-action="reset"]');
-  const scrubber = card.querySelector('.viewer-scrubber');
+  const playBtn    = card.querySelector('[data-action="play"]');
+  const resetBtn   = card.querySelector('[data-action="reset"]');
+  const camBtn     = card.querySelector('[data-action="reset-camera"]');
+  const scrubber   = card.querySelector('.viewer-scrubber');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   let playing = false;
@@ -140,6 +143,16 @@ export function wireViewerControls(card) {
   function setPlaying(state) {
     playing = state;
     if (playBtn) playBtn.textContent = playing ? '⏸' : '▶';
+  }
+
+  function doResetAnimation(player) {
+    player.pause?.();
+    player.timestamp = 0;
+    if (scrubber) {
+      scrubber.value = 0;
+      scrubber.style.setProperty('--progress', '0%');
+    }
+    setPlaying(false);
   }
 
   playBtn?.addEventListener('click', () => {
@@ -151,13 +164,12 @@ export function wireViewerControls(card) {
       setPlaying(false);
     } else {
       if (prefersReducedMotion.matches) {
-        player.timestamp = activePlayers.get(player)?.estimatedMax ?? 9999;
+        const state = activePlayers.get(player);
+        player.timestamp = state?.estimatedMax ?? 9999;
         if (scrubber) scrubber.value = 100;
       } else {
-        player.timestamp = player.timestamp ?? 0;
         player.play();
         setPlaying(true);
-        // Auto-reset play button when animation ends
         const state = activePlayers.get(player);
         if (state) {
           const checkEnd = () => {
@@ -174,12 +186,18 @@ export function wireViewerControls(card) {
     }
   });
 
+  // Reset: animation back to start + camera back to default
   resetBtn?.addEventListener('click', () => {
     const player = card.querySelector('twisty-player');
     if (!player) return;
-    player.pause?.();
-    player.timestamp = 0;
-    if (scrubber) scrubber.value = 0;
-    setPlaying(false);
+    doResetAnimation(player);
+    resetCamera(player);
+  });
+
+  // Camera-only reset: restore angle without touching animation position
+  camBtn?.addEventListener('click', () => {
+    const player = card.querySelector('twisty-player');
+    if (!player) return;
+    resetCamera(player);
   });
 }

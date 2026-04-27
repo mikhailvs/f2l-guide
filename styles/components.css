@@ -819,6 +819,13 @@ twisty-player {
   cursor: not-allowed;
 }
 
+/* Camera reset button sits at end with a left-auto spacer */
+.viewer-btn-cam {
+  margin-left: auto;
+  opacity: 0.7;
+}
+.viewer-btn-cam:hover:not(:disabled) { opacity: 1; }
+
 /* ── Recognition hint ───────────────────────────────────── */
 
 .recognition-toggle {

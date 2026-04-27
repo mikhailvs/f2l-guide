@@ -274,7 +274,17 @@ function buildCard(c, isLearned, displayNum) {
 
     <div class="viewer-controls">
       <button class="viewer-btn" data-action="play" aria-label="Play / pause algorithm" disabled>▶</button>
-      <button class="viewer-btn" data-action="reset" aria-label="Reset to case position" disabled>↺</button>
+      <button class="viewer-btn" data-action="reset" aria-label="Reset animation and camera" disabled>↺</button>
+      <button class="viewer-btn viewer-btn-cam" data-action="reset-camera" aria-label="Reset camera angle" disabled title="Reset camera angle">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <rect x="1" y="3.5" width="7" height="7" rx="0.8"/>
+          <rect x="4.5" y="1" width="7" height="7" rx="0.8"/>
+          <line x1="1" y1="3.5" x2="4.5" y2="1"/>
+          <line x1="8" y1="3.5" x2="11.5" y2="1"/>
+          <line x1="1" y1="10.5" x2="4.5" y2="8"/>
+          <line x1="8" y1="10.5" x2="11.5" y2="8"/>
+        </svg>
+      </button>
     </div>
 
     <div class="case-card-body">
